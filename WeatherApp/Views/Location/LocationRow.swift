@@ -12,7 +12,7 @@ struct LocationRow: View {
     var location: Location
 
     var body: some View {
-        NavigationLink(destination: LocationData(viewModel: LocationDataViewModel(location: location))) {
+        NavigationLink(destination: LocationData(location: location)) {
             Text(location.name)
                 .foregroundColor(.primary)
         }
