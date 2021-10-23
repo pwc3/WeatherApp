@@ -69,18 +69,11 @@
 		C504912C2723514A003194C2 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				C504912D2723514A003194C2 /* WeatherApp.swift */,
-				C504912F2723514A003194C2 /* ContentView.swift */,
-				C50491312723514F003194C2 /* Assets.xcassets */,
+				C5BECC2A272450AD0001A36A /* Data */,
 				C50491332723514F003194C2 /* Preview Content */,
-				C504913E27235336003194C2 /* Environment.swift */,
-				C504914027235391003194C2 /* LocationList.swift */,
-				C504914227235444003194C2 /* LocationRow.swift */,
-				C5049144272355CF003194C2 /* Location.swift */,
-				C5049146272359C9003194C2 /* LocationData.swift */,
-				C504914A2723638D003194C2 /* LoadingView.swift */,
-				C504914C272363B9003194C2 /* ErrorView.swift */,
-				C504914827235D21003194C2 /* LocationDataRow.swift */,
+				C5BECC2B272450C30001A36A /* Resources */,
+				C5BECC28272450400001A36A /* Views */,
+				C504912D2723514A003194C2 /* WeatherApp.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -91,6 +84,45 @@
 				C50491342723514F003194C2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C5BECC28272450400001A36A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C504912F2723514A003194C2 /* ContentView.swift */,
+				C5BECC292724504D0001A36A /* Location */,
+				C504914A2723638D003194C2 /* LoadingView.swift */,
+				C504914C272363B9003194C2 /* ErrorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C5BECC292724504D0001A36A /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				C504914027235391003194C2 /* LocationList.swift */,
+				C504914227235444003194C2 /* LocationRow.swift */,
+				C5049146272359C9003194C2 /* LocationData.swift */,
+				C504914827235D21003194C2 /* LocationDataRow.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		C5BECC2A272450AD0001A36A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C504913E27235336003194C2 /* Environment.swift */,
+				C5049144272355CF003194C2 /* Location.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C5BECC2B272450C30001A36A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C50491312723514F003194C2 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
