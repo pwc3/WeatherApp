@@ -9,14 +9,27 @@ import SwiftUI
 import WeatherAPI
 
 struct ForecastPointView: View {
+
+    private struct Row: View {
+        var title: String
+        var value: String
+
+        var body: some View {
+            VStack(alignment: .leading) {
+                Text(title).font(.caption)
+                Text(value).font(.body)
+            }
+        }
+    }
+
     var point: Point
 
     var body: some View {
-        TitleSubtitleRow(title: "Forecast office", subtitle: point.forecastOfficeId)
-        TitleSubtitleRow(title: "Grid ID", subtitle: point.gridId)
-        TitleSubtitleRow(title: "Grid X", subtitle: point.gridX.description)
-        TitleSubtitleRow(title: "Grid Y", subtitle: point.gridY.description)
-        TitleSubtitleRow(title: "Grid Y", subtitle: point.radarStation)
+        Row(title: "Forecast office", value: point.forecastOfficeId)
+        Row(title: "Grid ID", value: point.gridId)
+        Row(title: "Grid X", value: point.gridX.description)
+        Row(title: "Grid Y", value: point.gridY.description)
+        Row(title: "Grid Y", value: point.radarStation)
     }
 }
 

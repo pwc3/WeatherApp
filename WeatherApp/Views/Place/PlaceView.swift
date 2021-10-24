@@ -36,56 +36,45 @@ struct PlaceView: View {
     }
 
     var body: some View {
-        switch loadState {
-        case .loading:
-            ProgressView()
-                .onAppear {
-                    Task {
-                        self.loadState = await self.fetch()
+        Group {
+            switch loadState {
+            case .loading:
+                ProgressView()
+                    .onAppear {
+                        Task {
+                            self.loadState = await self.fetch()
+                        }
+                    }
+
+            case .successful(let location):
+                List {
+                    Section {
+                        ExpandableSectionToggle(title: "Forecast point", isExpanded: $isPointMetadataExpanded)
+                        if isPointMetadataExpanded {
+                            ForecastPointView(point: location.point)
+                        }
+                    }
+
+                    Section {
+                        ExpandableSectionToggle(title: "Nearby observation stations", isExpanded: $isObservationStationListExpanded)
+                        if isObservationStationListExpanded {
+                            ObservationStationView(observationStations: location.observationStations)
+                        }
+                    }
+
+                    Section {
+                        NavigationLink(destination: ObservationView(location: location)) {
+                            Text("Current conditions")
+                        }
                     }
                 }
-                .navigationTitle(place.name)
 
-        case .successful(let location):
-            List {
-                Section {
-                    ExpandableSectionToggle(title: "Forecast point", isExpanded: $isPointMetadataExpanded)
-                    if isPointMetadataExpanded {
-                        ForecastPointView(point: location.point)
-                    }
-                }
-
-                Section {
-                    ExpandableSectionToggle(title: "Nearby observation stations", isExpanded: $isObservationStationListExpanded)
-                    if isObservationStationListExpanded {
-                        ObservationStationView(observationStations: location.observationStations)
-                    }
-                }
-
-                Section {
-                    NavigationLink(destination: ObservationView(title: "Latest observation", location: location)) {
-                        Text("Latest observation")
-                    }
-
-                    NavigationLink(destination: ForecastView(title: "Forecast", location: location)) {
-                        Text("Forecast")
-                    }
-
-                    NavigationLink(destination: ForecastView(title: "Hourly forecast", location: location)) {
-                        Text("Hourly forecast")
-                    }
-                }
+            case .failed(let error):
+                ErrorView(error: error)
             }
-            .navigationTitle(place.name)
-
-        case .failed(let error):
-            ErrorView(error: error)
         }
+        .navigationTitle(place.name)
     }
-
-    typealias ObservationView = PlaceholderView
-
-    typealias ForecastView = PlaceholderView
 
     private func fetch() async -> LoadState {
         do {
@@ -99,10 +88,7 @@ struct PlaceView: View {
 
 struct PlaceView_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceView(location: Location(id: UUID(),
-                                     place: SampleData.places[0],
-                                     point: SampleData.point,
-                                     observationStations: SampleData.observationStations))
+        PlaceView(location: SampleData.location)
             .environmentObject(Environment())
     }
 }

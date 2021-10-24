@@ -12,8 +12,11 @@ struct ObservationStationView: View {
     var observationStations: [ObservationStation]
 
     var body: some View {
-        ForEach(observationStations, id: \.stationIdentifier) {
-            TitleSubtitleRow(title: $0.stationIdentifier, subtitle: $0.name)
+        ForEach(observationStations, id: \.stationIdentifier) { station in
+            VStack(alignment: .leading) {
+                Text(station.stationIdentifier).font(.body)
+                Text(station.name).font(.caption)
+            }
         }
     }
 }
