@@ -66,6 +66,14 @@ struct PlaceView: View {
                         NavigationLink(destination: ObservationView(location: location)) {
                             Text("Current conditions")
                         }
+
+                        NavigationLink(destination: ForecastView(location: location, type: .hourly)) {
+                            Text("Hourly forecast")
+                        }
+
+                        NavigationLink(destination: ForecastView(location: location, type: .sevenDay)) {
+                            Text("Seven-day forecast")
+                        }
                     }
                 }
 

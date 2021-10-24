@@ -68,7 +68,11 @@ struct ObservationView: View {
                         Row("Max. temp. (last 24 hrs.)") { try observation.maxTemperatureLast24Hours.temperature?.formatted() }
                         Row("Min. temp. (last 24 hrs.)") { try observation.minTemperatureLast24Hours.temperature?.formatted() }
 
-                        Row("Relative humidity") { try observation.relativeHumidity.percent?.formatted() }
+                        Row("Relative humidity") {
+                            try observation.relativeHumidity.percent.map {
+                                String(format: "%.0f%%", $0)
+                            }
+                        }
                         Row("Wind chill") { try observation.windChill.temperature?.formatted() }
                         Row("Heat index") { try observation.heatIndex.temperature?.formatted() }
                     }
@@ -80,8 +84,8 @@ struct ObservationView: View {
                     }
 
                     Section("Pressure") {
-                        Row("Barometric pressure") { try observation.barometricPressure.pressure?.formatted() }
-                        Row("Sea level pressure") { try observation.seaLevelPressure.pressure?.formatted() }
+                        Row("Barometric pressure") { format(pressure: try observation.barometricPressure.pressure) }
+                        Row("Sea level pressure") { format(pressure: try observation.seaLevelPressure.pressure) }
                     }
 
                     Section("Precipitation") {
@@ -118,7 +122,15 @@ struct ObservationView: View {
     }
 
     private func base(for layer: CloudLayer) -> String? {
-        return try? layer.base.length?.formatted()
+        (try? layer.base.length?.converted(to: .feet).value).map {
+            String(format: "%.0f ft", $0)
+        }
+    }
+
+    private func format(pressure: Measurement<UnitPressure>?) -> String? {
+        return pressure.map {
+            return $0.converted(to: .millibars).formatted()
+        }
     }
 
     private func fetch() async -> LoadState {

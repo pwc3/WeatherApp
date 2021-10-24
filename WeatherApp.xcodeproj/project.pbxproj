@@ -29,6 +29,7 @@
 		C5BECC432725AA7F0001A36A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC422725AA7F0001A36A /* Location.swift */; };
 		C5C785812725B30E0097A6C8 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C785802725B30E0097A6C8 /* PlaceholderView.swift */; };
 		C5C785852725E9750097A6C8 /* ObservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C785842725E9750097A6C8 /* ObservationView.swift */; };
+		C5C785872725F1120097A6C8 /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C785862725F1120097A6C8 /* ForecastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		C5BECC422725AA7F0001A36A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C5C785802725B30E0097A6C8 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		C5C785842725E9750097A6C8 /* ObservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationView.swift; sourceTree = "<group>"; };
+		C5C785862725F1120097A6C8 /* ForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				C5BECC3F2725A8E30001A36A /* Common */,
 				C504912F2723514A003194C2 /* ContentView.swift */,
+				C5C785862725F1120097A6C8 /* ForecastView.swift */,
 				C5C785842725E9750097A6C8 /* ObservationView.swift */,
 				C5BECC292724504D0001A36A /* Place */,
 				C5C785802725B30E0097A6C8 /* PlaceholderView.swift */,
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5049145272355CF003194C2 /* Place.swift in Sources */,
+				C5C785872725F1120097A6C8 /* ForecastView.swift in Sources */,
 				C5BECC3C2725A6A60001A36A /* LoadDecodableFromFile.swift in Sources */,
 				C50491302723514A003194C2 /* ContentView.swift in Sources */,
 				C504913F27235336003194C2 /* Environment.swift in Sources */,
