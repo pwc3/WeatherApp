@@ -12,15 +12,16 @@ struct ObservationStationListView: View {
     var observationStations: FeatureCollection<ObservationStation>
 
     var body: some View {
-        ForEach(observationStations.features, id: \.properties.stationIdentifier) {
-            LocationDataRow(name: $0.properties.stationIdentifier, value: $0.properties.name)
+        List {
+            ForEach(observationStations.features, id: \.properties.stationIdentifier) {
+                TitleSubtitleRow(title: $0.properties.stationIdentifier, subtitle: $0.properties.name)
+            }
         }
     }
 }
 
 struct ObservationStationListView_Previews: PreviewProvider {
     static var previews: some View {
-        // ObservationStationListView()
-        Text("TBD")
+        ObservationStationListView(observationStations: SampleData.observationStations)
     }
 }

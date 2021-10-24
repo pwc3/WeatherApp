@@ -9,15 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var locations: [Location]
+    var places: [Place]
 
     var body: some View {
-        LocationList(locations: locations)
+        PlaceList(places: places)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(locations: Location.all)
+        ContentView(places: SampleData.places)
     }
 }

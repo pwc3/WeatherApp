@@ -15,7 +15,7 @@ struct WeatherApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(locations: Location.all)
+            ContentView(places: SampleData.places)
                 .environmentObject(environment)
         }
     }

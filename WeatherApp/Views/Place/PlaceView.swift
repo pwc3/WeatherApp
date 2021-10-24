@@ -1,5 +1,5 @@
 //
-//  LocationData.swift
+//  PlaceView.swift
 //  WeatherApp
 //
 //  Created by Paul Calnan on 10/22/21.
@@ -8,7 +8,7 @@
 import SwiftUI
 import WeatherAPI
 
-struct LocationData: View {
+struct PlaceView: View {
 
     private struct ModelData {
         var point: Point
@@ -29,7 +29,7 @@ struct LocationData: View {
 
     @State private var isObservationStationListExpanded = false
 
-    var location: Location
+    var place: Place
 
     var body: some View {
         switch loadState {
@@ -40,7 +40,7 @@ struct LocationData: View {
                         self.loadState = await self.fetch()
                     }
                 }
-                .navigationTitle(location.name)
+                .navigationTitle(place.name)
 
         case .successful(let modelData):
             List {
@@ -58,7 +58,7 @@ struct LocationData: View {
                     }
                 }
             }
-            .navigationTitle(location.name)
+            .navigationTitle(place.name)
 
         case .failed(let error):
             ErrorView(error: error)
@@ -67,7 +67,7 @@ struct LocationData: View {
 
     private func fetch() async -> LoadState {
         do {
-            let point = try await environment.weatherService.points(latitude: location.latitude, longitude: location.longitude).properties
+            let point = try await environment.weatherService.points(latitude: place.latitude, longitude: place.longitude).properties
             let stations = try await environment.weatherService.stations(for: point)
             return .successful(ModelData(point: point, stations: stations))
         }
@@ -77,9 +77,9 @@ struct LocationData: View {
     }
 }
 
-struct LocationData_Previews: PreviewProvider {
+struct PlaceView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationData(location: Location.boston)
+        PlaceView(place: SampleData.places[0])
             .environmentObject(Environment())
     }
 }
