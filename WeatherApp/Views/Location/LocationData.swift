@@ -17,7 +17,8 @@ struct LocationData: View {
 
     private enum LoadState {
         case loading
-        case finished(Result<ModelData, Error>)
+        case successful(ModelData)
+        case failed(Error)
     }
 
     @EnvironmentObject var environment: Environment
@@ -36,45 +37,42 @@ struct LocationData: View {
             ProgressView()
                 .onAppear {
                     Task {
-                        self.loadState = .finished(await self.fetch())
+                        self.loadState = await self.fetch()
                     }
                 }
                 .navigationTitle(location.name)
 
-        case .finished(let result):
-            switch result {
-            case .success(let modelData):
-                List {
-                    Section {
-                        ExpandableSectionToggle(title: Text("Forecast point"), isExpanded: $isPointMetadataExpanded)
-                        if isPointMetadataExpanded {
-                            PointMetadataView(point: modelData.point)
-                        }
-                    }
-
-                    Section {
-                        ExpandableSectionToggle(title: Text("Nearby observation stations"), isExpanded: $isObservationStationListExpanded)
-                        if isObservationStationListExpanded {
-                            ObservationStationListView(observationStations: modelData.stations)
-                        }
+        case .successful(let modelData):
+            List {
+                Section {
+                    ExpandableSectionToggle(title: Text("Forecast point"), isExpanded: $isPointMetadataExpanded)
+                    if isPointMetadataExpanded {
+                        PointMetadataView(point: modelData.point)
                     }
                 }
-                .navigationTitle(location.name)
 
-            case .failure(let error):
-                ErrorView(error: error)
+                Section {
+                    ExpandableSectionToggle(title: Text("Nearby observation stations"), isExpanded: $isObservationStationListExpanded)
+                    if isObservationStationListExpanded {
+                        ObservationStationListView(observationStations: modelData.stations)
+                    }
+                }
             }
+            .navigationTitle(location.name)
+
+        case .failed(let error):
+            ErrorView(error: error)
         }
     }
 
-    private func fetch() async -> Result<ModelData, Error> {
+    private func fetch() async -> LoadState {
         do {
             let point = try await environment.weatherService.points(latitude: location.latitude, longitude: location.longitude).properties
             let stations = try await environment.weatherService.stations(for: point)
-            return .success(ModelData(point: point, stations: stations))
+            return .successful(ModelData(point: point, stations: stations))
         }
         catch {
-            return .failure(error)
+            return .failed(error)
         }
     }
 }
