@@ -19,7 +19,12 @@ struct SampleData {
         return feature.properties
     }()
 
-    static var observationStations: FeatureCollection<ObservationStation> = {
-        load(fromFilename: "ObservationStationsResponse.json")
+    static var observationStations: [ObservationStation] = {
+        let collection: FeatureCollection<ObservationStation> = load(fromFilename: "ObservationStationsResponse.json")
+        return collection.features.map { $0.properties }
+    }()
+
+    static var location: Location = {
+        Location(id: UUID(), place: places[0], point: point, observationStations: observationStations)
     }()
 }

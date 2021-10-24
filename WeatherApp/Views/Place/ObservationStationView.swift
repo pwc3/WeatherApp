@@ -9,11 +9,11 @@ import SwiftUI
 import WeatherAPI
 
 struct ObservationStationView: View {
-    var observationStations: FeatureCollection<ObservationStation>
+    var observationStations: [ObservationStation]
 
     var body: some View {
-        ForEach(observationStations.features, id: \.properties.stationIdentifier) {
-            TitleSubtitleRow(title: $0.properties.stationIdentifier, subtitle: $0.properties.name)
+        ForEach(observationStations, id: \.stationIdentifier) {
+            TitleSubtitleRow(title: $0.stationIdentifier, subtitle: $0.name)
         }
     }
 }

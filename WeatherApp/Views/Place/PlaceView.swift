@@ -49,16 +49,30 @@ struct PlaceView: View {
         case .successful(let location):
             List {
                 Section {
-                    ExpandableSectionToggle(title: Text("Forecast point"), isExpanded: $isPointMetadataExpanded)
+                    ExpandableSectionToggle(title: "Forecast point", isExpanded: $isPointMetadataExpanded)
                     if isPointMetadataExpanded {
                         ForecastPointView(point: location.point)
                     }
                 }
 
                 Section {
-                    ExpandableSectionToggle(title: Text("Nearby observation stations"), isExpanded: $isObservationStationListExpanded)
+                    ExpandableSectionToggle(title: "Nearby observation stations", isExpanded: $isObservationStationListExpanded)
                     if isObservationStationListExpanded {
                         ObservationStationView(observationStations: location.observationStations)
+                    }
+                }
+
+                Section {
+                    NavigationLink(destination: ObservationView(title: "Latest observation", location: location)) {
+                        Text("Latest observation")
+                    }
+
+                    NavigationLink(destination: ForecastView(title: "Forecast", location: location)) {
+                        Text("Forecast")
+                    }
+
+                    NavigationLink(destination: ForecastView(title: "Hourly forecast", location: location)) {
+                        Text("Hourly forecast")
                     }
                 }
             }
@@ -68,6 +82,10 @@ struct PlaceView: View {
             ErrorView(error: error)
         }
     }
+
+    typealias ObservationView = PlaceholderView
+
+    typealias ForecastView = PlaceholderView
 
     private func fetch() async -> LoadState {
         do {

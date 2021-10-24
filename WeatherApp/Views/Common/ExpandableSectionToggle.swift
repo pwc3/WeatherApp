@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExpandableSectionToggle: View {
-    var title: Text
+    var title: String
 
     @Binding var isExpanded: Bool
 
@@ -19,7 +19,7 @@ struct ExpandableSectionToggle: View {
             }
         }) {
             HStack {
-                title
+                Text(title)
                     .fontWeight(.medium)
                 Spacer()
                 Image(systemName: "chevron.right.circle")
@@ -32,6 +32,6 @@ struct ExpandableSectionToggle: View {
 
 struct ExpandableSectionToggle_Previews: PreviewProvider {
     static var previews: some View {
-        ExpandableSectionToggle(title: Text("Expandable row"), isExpanded: .constant(true))
+        ExpandableSectionToggle(title: "Expandable row", isExpanded: .constant(true))
     }
 }

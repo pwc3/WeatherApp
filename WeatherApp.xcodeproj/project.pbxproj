@@ -28,6 +28,7 @@
 		C5BECC3E2725A6F30001A36A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC3D2725A6F30001A36A /* SampleData.swift */; };
 		C5BECC412725A95A0001A36A /* ObservationStationsResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = C5BECC402725A95A0001A36A /* ObservationStationsResponse.json */; };
 		C5BECC432725AA7F0001A36A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC422725AA7F0001A36A /* Location.swift */; };
+		C5C785812725B30E0097A6C8 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C785802725B30E0097A6C8 /* PlaceholderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		C5BECC3D2725A6F30001A36A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		C5BECC402725A95A0001A36A /* ObservationStationsResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ObservationStationsResponse.json; sourceTree = "<group>"; };
 		C5BECC422725AA7F0001A36A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		C5C785802725B30E0097A6C8 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				C5BECC3F2725A8E30001A36A /* Common */,
 				C504912F2723514A003194C2 /* ContentView.swift */,
 				C5BECC292724504D0001A36A /* Place */,
+				C5C785802725B30E0097A6C8 /* PlaceholderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				C504912E2723514A003194C2 /* WeatherApp.swift in Sources */,
 				C5BECC2E27245D0E0001A36A /* Result+Async.swift in Sources */,
 				C5BECC3E2725A6F30001A36A /* SampleData.swift in Sources */,
+				C5C785812725B30E0097A6C8 /* PlaceholderView.swift in Sources */,
 				C504914127235391003194C2 /* PlaceList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
