@@ -10,9 +10,14 @@ import WeatherAPI
 
 struct LocationData: View {
 
-    enum LoadState {
+    private struct ModelData {
+        var point: Point
+        var station: FeatureCollection<ObservationStation>
+    }
+
+    private enum LoadState {
         case loading
-        case finished(Result<Point, Error>)
+        case finished(Result<ModelData, Error>)
     }
 
     @EnvironmentObject var environment: Environment
@@ -27,25 +32,27 @@ struct LocationData: View {
             LoadingView()
                 .onAppear {
                     Task {
-                        self.state = .finished(await self.fetchPoint())
+                        self.state = .finished(await self.fetch())
                     }
                 }
                 .navigationTitle(location.name)
 
         case .finished(let result):
             switch result {
-            case .success(let point):
+            case .success(let modelData):
                 List {
-                    Section {
-                        LocationDataRow(name: "Forecast office", value: point.forecastOfficeId)
-                        LocationDataRow(name: "Grid ID", value: point.gridId)
-                        LocationDataRow(name: "Grid X", value: point.gridX.description)
-                        LocationDataRow(name: "Grid Y", value: point.gridY.description)
-                        LocationDataRow(name: "Grid Y", value: point.radarStation)
+                    Section(header: Text("Forecast point")) {
+                        LocationDataRow(name: "Forecast office", value: modelData.point.forecastOfficeId)
+                        LocationDataRow(name: "Grid ID", value: modelData.point.gridId)
+                        LocationDataRow(name: "Grid X", value: modelData.point.gridX.description)
+                        LocationDataRow(name: "Grid Y", value: modelData.point.gridY.description)
+                        LocationDataRow(name: "Grid Y", value: modelData.point.radarStation)
                     }
 
-                    Section {
-                        
+                    Section(header: Text("Nearby observation stations")) {
+                        ForEach(modelData.station.features, id: \.properties.stationIdentifier) {
+                            LocationDataRow(name: $0.properties.stationIdentifier, value: $0.properties.name)
+                        }
                     }
                 }
                 .navigationTitle(location.name)
@@ -56,11 +63,14 @@ struct LocationData: View {
         }
     }
 
-    private func fetchPoint() async -> Result<Point, Error> {
-        await Result {
-            try await environment.weatherService.points(
-                latitude: location.latitude,
-                longitude: location.longitude).properties
+    private func fetch() async -> Result<ModelData, Error> {
+        do {
+            let point = try await environment.weatherService.points(latitude: location.latitude, longitude: location.longitude).properties
+            let station = try await environment.weatherService.stations(for: point)
+            return .success(ModelData(point: point, station: station))
+        }
+        catch {
+            return .failure(error)
         }
     }
 }
