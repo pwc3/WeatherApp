@@ -10,14 +10,9 @@ import WeatherAPI
 
 struct PlaceView: View {
 
-    private struct ModelData {
-        var point: Point
-        var stations: FeatureCollection<ObservationStation>
-    }
-
     private enum LoadState {
         case loading
-        case successful(ModelData)
+        case successful(Location)
         case failed(Error)
     }
 
@@ -31,6 +26,15 @@ struct PlaceView: View {
 
     var place: Place
 
+    init(place: Place) {
+        self.place = place
+    }
+
+    init(location: Location) {
+        self.place = location.place
+        loadState = .successful(location)
+    }
+
     var body: some View {
         switch loadState {
         case .loading:
@@ -42,19 +46,19 @@ struct PlaceView: View {
                 }
                 .navigationTitle(place.name)
 
-        case .successful(let modelData):
+        case .successful(let location):
             List {
                 Section {
                     ExpandableSectionToggle(title: Text("Forecast point"), isExpanded: $isPointMetadataExpanded)
                     if isPointMetadataExpanded {
-                        PointMetadataView(point: modelData.point)
+                        ForecastPointView(point: location.point)
                     }
                 }
 
                 Section {
                     ExpandableSectionToggle(title: Text("Nearby observation stations"), isExpanded: $isObservationStationListExpanded)
                     if isObservationStationListExpanded {
-                        ObservationStationListView(observationStations: modelData.stations)
+                        ObservationStationView(observationStations: location.observationStations)
                     }
                 }
             }
@@ -67,9 +71,7 @@ struct PlaceView: View {
 
     private func fetch() async -> LoadState {
         do {
-            let point = try await environment.weatherService.points(latitude: place.latitude, longitude: place.longitude).properties
-            let stations = try await environment.weatherService.stations(for: point)
-            return .successful(ModelData(point: point, stations: stations))
+            return .successful(try await Location.fetch(using: environment.weatherService, for: place))
         }
         catch {
             return .failed(error)
@@ -79,7 +81,10 @@ struct PlaceView: View {
 
 struct PlaceView_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceView(place: SampleData.places[0])
+        PlaceView(location: Location(id: UUID(),
+                                     place: SampleData.places[0],
+                                     point: SampleData.point,
+                                     observationStations: SampleData.observationStations))
             .environmentObject(Environment())
     }
 }

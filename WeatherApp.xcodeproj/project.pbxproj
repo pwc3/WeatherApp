@@ -19,14 +19,15 @@
 		C504914927235D21003194C2 /* TitleSubtitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504914827235D21003194C2 /* TitleSubtitleRow.swift */; };
 		C504914D272363B9003194C2 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504914C272363B9003194C2 /* ErrorView.swift */; };
 		C5BECC2E27245D0E0001A36A /* Result+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC2D27245D0E0001A36A /* Result+Async.swift */; };
-		C5BECC3227259E370001A36A /* PointMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC3127259E370001A36A /* PointMetadataView.swift */; };
+		C5BECC3227259E370001A36A /* ForecastPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC3127259E370001A36A /* ForecastPointView.swift */; };
 		C5BECC342725A1420001A36A /* ExpandableSectionToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC332725A1420001A36A /* ExpandableSectionToggle.swift */; };
-		C5BECC362725A2AA0001A36A /* ObservationStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC352725A2AA0001A36A /* ObservationStationListView.swift */; };
+		C5BECC362725A2AA0001A36A /* ObservationStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC352725A2AA0001A36A /* ObservationStationView.swift */; };
 		C5BECC382725A52B0001A36A /* Places.json in Resources */ = {isa = PBXBuildFile; fileRef = C5BECC372725A52B0001A36A /* Places.json */; };
 		C5BECC3A2725A6040001A36A /* PointResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = C5BECC392725A6040001A36A /* PointResponse.json */; };
 		C5BECC3C2725A6A60001A36A /* LoadDecodableFromFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC3B2725A6A60001A36A /* LoadDecodableFromFile.swift */; };
 		C5BECC3E2725A6F30001A36A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC3D2725A6F30001A36A /* SampleData.swift */; };
 		C5BECC412725A95A0001A36A /* ObservationStationsResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = C5BECC402725A95A0001A36A /* ObservationStationsResponse.json */; };
+		C5BECC432725AA7F0001A36A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC422725AA7F0001A36A /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,14 +43,15 @@
 		C504914827235D21003194C2 /* TitleSubtitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleRow.swift; sourceTree = "<group>"; };
 		C504914C272363B9003194C2 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		C5BECC2D27245D0E0001A36A /* Result+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Async.swift"; sourceTree = "<group>"; };
-		C5BECC3127259E370001A36A /* PointMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointMetadataView.swift; sourceTree = "<group>"; };
+		C5BECC3127259E370001A36A /* ForecastPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPointView.swift; sourceTree = "<group>"; };
 		C5BECC332725A1420001A36A /* ExpandableSectionToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableSectionToggle.swift; sourceTree = "<group>"; };
-		C5BECC352725A2AA0001A36A /* ObservationStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationStationListView.swift; sourceTree = "<group>"; };
+		C5BECC352725A2AA0001A36A /* ObservationStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationStationView.swift; sourceTree = "<group>"; };
 		C5BECC372725A52B0001A36A /* Places.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Places.json; sourceTree = "<group>"; };
 		C5BECC392725A6040001A36A /* PointResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PointResponse.json; sourceTree = "<group>"; };
 		C5BECC3B2725A6A60001A36A /* LoadDecodableFromFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDecodableFromFile.swift; sourceTree = "<group>"; };
 		C5BECC3D2725A6F30001A36A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		C5BECC402725A95A0001A36A /* ObservationStationsResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ObservationStationsResponse.json; sourceTree = "<group>"; };
+		C5BECC422725AA7F0001A36A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,10 +116,10 @@
 		C5BECC292724504D0001A36A /* Place */ = {
 			isa = PBXGroup;
 			children = (
-				C5BECC352725A2AA0001A36A /* ObservationStationListView.swift */,
+				C5BECC3127259E370001A36A /* ForecastPointView.swift */,
+				C5BECC352725A2AA0001A36A /* ObservationStationView.swift */,
 				C504914027235391003194C2 /* PlaceList.swift */,
 				C5049146272359C9003194C2 /* PlaceView.swift */,
-				C5BECC3127259E370001A36A /* PointMetadataView.swift */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -129,6 +131,7 @@
 				C5BECC3B2725A6A60001A36A /* LoadDecodableFromFile.swift */,
 				C5049144272355CF003194C2 /* Place.swift */,
 				C5BECC3D2725A6F30001A36A /* SampleData.swift */,
+				C5BECC422725AA7F0001A36A /* Location.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -245,12 +248,13 @@
 				C5BECC3C2725A6A60001A36A /* LoadDecodableFromFile.swift in Sources */,
 				C50491302723514A003194C2 /* ContentView.swift in Sources */,
 				C504913F27235336003194C2 /* Environment.swift in Sources */,
-				C5BECC3227259E370001A36A /* PointMetadataView.swift in Sources */,
+				C5BECC3227259E370001A36A /* ForecastPointView.swift in Sources */,
 				C504914927235D21003194C2 /* TitleSubtitleRow.swift in Sources */,
 				C504914D272363B9003194C2 /* ErrorView.swift in Sources */,
+				C5BECC432725AA7F0001A36A /* Location.swift in Sources */,
 				C5BECC342725A1420001A36A /* ExpandableSectionToggle.swift in Sources */,
 				C5049147272359C9003194C2 /* PlaceView.swift in Sources */,
-				C5BECC362725A2AA0001A36A /* ObservationStationListView.swift in Sources */,
+				C5BECC362725A2AA0001A36A /* ObservationStationView.swift in Sources */,
 				C504912E2723514A003194C2 /* WeatherApp.swift in Sources */,
 				C5BECC2E27245D0E0001A36A /* Result+Async.swift in Sources */,
 				C5BECC3E2725A6F30001A36A /* SampleData.swift in Sources */,

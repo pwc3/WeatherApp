@@ -15,7 +15,8 @@ struct SampleData {
     }()
 
     static var point: Point = {
-        load(fromFilename: "PointResponse.json")
+        let feature: Feature<Point> = load(fromFilename: "PointResponse.json")
+        return feature.properties
     }()
 
     static var observationStations: FeatureCollection<ObservationStation> = {

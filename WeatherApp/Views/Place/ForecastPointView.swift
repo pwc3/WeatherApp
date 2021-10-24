@@ -1,5 +1,5 @@
 //
-//  PointMetadataView.swift
+//  ForecastPointView.swift
 //  WeatherApp
 //
 //  Created by Paul Calnan on 10/24/21.
@@ -8,7 +8,7 @@
 import SwiftUI
 import WeatherAPI
 
-struct PointMetadataView: View {
+struct ForecastPointView: View {
     var point: Point
 
     var body: some View {
@@ -20,9 +20,10 @@ struct PointMetadataView: View {
     }
 }
 
-struct PointMetadataView_Previews: PreviewProvider {
+struct ForecastPointView_Previews: PreviewProvider {
     static var previews: some View {
-        // PointMetadataView()
-        Text("TBD")
+        List {
+            ForecastPointView(point: SampleData.point)
+        }
     }
 }
