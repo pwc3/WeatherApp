@@ -18,9 +18,11 @@
 		C5049145272355CF003194C2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5049144272355CF003194C2 /* Location.swift */; };
 		C5049147272359C9003194C2 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5049146272359C9003194C2 /* LocationData.swift */; };
 		C504914927235D21003194C2 /* LocationDataRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504914827235D21003194C2 /* LocationDataRow.swift */; };
-		C504914B2723638D003194C2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504914A2723638D003194C2 /* LoadingView.swift */; };
 		C504914D272363B9003194C2 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504914C272363B9003194C2 /* ErrorView.swift */; };
 		C5BECC2E27245D0E0001A36A /* Result+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC2D27245D0E0001A36A /* Result+Async.swift */; };
+		C5BECC3227259E370001A36A /* PointMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC3127259E370001A36A /* PointMetadataView.swift */; };
+		C5BECC342725A1420001A36A /* ExpandableSectionToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC332725A1420001A36A /* ExpandableSectionToggle.swift */; };
+		C5BECC362725A2AA0001A36A /* ObservationStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC352725A2AA0001A36A /* ObservationStationListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +37,11 @@
 		C5049144272355CF003194C2 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C5049146272359C9003194C2 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		C504914827235D21003194C2 /* LocationDataRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataRow.swift; sourceTree = "<group>"; };
-		C504914A2723638D003194C2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		C504914C272363B9003194C2 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		C5BECC2D27245D0E0001A36A /* Result+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Async.swift"; sourceTree = "<group>"; };
+		C5BECC3127259E370001A36A /* PointMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointMetadataView.swift; sourceTree = "<group>"; };
+		C5BECC332725A1420001A36A /* ExpandableSectionToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableSectionToggle.swift; sourceTree = "<group>"; };
+		C5BECC352725A2AA0001A36A /* ObservationStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationStationListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +98,8 @@
 			children = (
 				C504912F2723514A003194C2 /* ContentView.swift */,
 				C5BECC292724504D0001A36A /* Location */,
-				C504914A2723638D003194C2 /* LoadingView.swift */,
 				C504914C272363B9003194C2 /* ErrorView.swift */,
+				C5BECC332725A1420001A36A /* ExpandableSectionToggle.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -103,10 +107,12 @@
 		C5BECC292724504D0001A36A /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				C504914027235391003194C2 /* LocationList.swift */,
-				C504914227235444003194C2 /* LocationRow.swift */,
 				C5049146272359C9003194C2 /* LocationData.swift */,
 				C504914827235D21003194C2 /* LocationDataRow.swift */,
+				C504914027235391003194C2 /* LocationList.swift */,
+				C504914227235444003194C2 /* LocationRow.swift */,
+				C5BECC352725A2AA0001A36A /* ObservationStationListView.swift */,
+				C5BECC3127259E370001A36A /* PointMetadataView.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -215,14 +221,16 @@
 				C5049145272355CF003194C2 /* Location.swift in Sources */,
 				C50491302723514A003194C2 /* ContentView.swift in Sources */,
 				C504913F27235336003194C2 /* Environment.swift in Sources */,
+				C5BECC3227259E370001A36A /* PointMetadataView.swift in Sources */,
 				C504914927235D21003194C2 /* LocationDataRow.swift in Sources */,
 				C504914327235444003194C2 /* LocationRow.swift in Sources */,
 				C504914D272363B9003194C2 /* ErrorView.swift in Sources */,
+				C5BECC342725A1420001A36A /* ExpandableSectionToggle.swift in Sources */,
 				C5049147272359C9003194C2 /* LocationData.swift in Sources */,
+				C5BECC362725A2AA0001A36A /* ObservationStationListView.swift in Sources */,
 				C504912E2723514A003194C2 /* WeatherApp.swift in Sources */,
 				C5BECC2E27245D0E0001A36A /* Result+Async.swift in Sources */,
 				C504914127235391003194C2 /* LocationList.swift in Sources */,
-				C504914B2723638D003194C2 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
