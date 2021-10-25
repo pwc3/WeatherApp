@@ -25,13 +25,15 @@ struct ForecastView: View {
         }
 
         fileprivate func fetchForecast(for location: Location, using service: WeatherService) async throws -> GridpointForecast {
+            let hourly: Bool
             switch self {
             case .hourly:
-                return try await service.hourlyForecast(for: location.point).properties
+                hourly = true
 
             case .sevenDay:
-                return try await service.forecast(for: location.point).properties
+                hourly = false
             }
+            return try await location.forecast(using: service, hourly: hourly)
         }
     }
 
