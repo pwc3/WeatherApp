@@ -10,25 +10,6 @@ import WeatherAPI
 
 struct ObservationDetails: View {
 
-    private struct Row: View {
-        var title: String
-        var value: String?
-
-        init(_ title: String, _ value: String?) {
-            self.title = title
-            self.value = value
-        }
-
-        var body: some View {
-            if let value = value {
-                VStack(alignment: .leading) {
-                    Text(title).font(.caption)
-                    Text(value).font(.body)
-                }
-            }
-        }
-    }
-
     var station: ObservationStation
     
     var observation: Observation
@@ -44,18 +25,18 @@ struct ObservationDetails: View {
                         .font(.body)
                 }
 
-                Row("Elevation", elevation)
-                Row("Timestamp", timestamp)
+                OptionalRow("Elevation", elevation)
+                OptionalRow("Timestamp", timestamp)
             }
 
             Section("Temperature") {
-                Row("Temperature", temperature)
-                Row("Dew point", dewPoint)
-                Row("Min. temp. (last 24 hrs.)", minTemp)
-                Row("Max. temp. (last 24 hrs.)", maxTemp)
-                Row("Relative humidity", relativeHumidity)
-                Row("Wind chill", windChill)
-                Row("Heat index", heatIndex)
+                OptionalRow("Temperature", temperature)
+                OptionalRow("Dew point", dewPoint)
+                OptionalRow("Min. temp. (last 24 hrs.)", minTemp)
+                OptionalRow("Max. temp. (last 24 hrs.)", maxTemp)
+                OptionalRow("Relative humidity", relativeHumidity)
+                OptionalRow("Wind chill", windChill)
+                OptionalRow("Heat index", heatIndex)
 
                 if noValues(temperature, dewPoint, minTemp, maxTemp, relativeHumidity, windChill, heatIndex) {
                     Text("No data").font(.body)
@@ -63,9 +44,9 @@ struct ObservationDetails: View {
             }
 
             Section("Wind") {
-                Row("Wind direction", windDirection)
-                Row("Wind speed", windSpeed)
-                Row("Wind gust", windGust)
+                OptionalRow("Wind direction", windDirection)
+                OptionalRow("Wind speed", windSpeed)
+                OptionalRow("Wind gust", windGust)
 
                 if noValues(windDirection, windSpeed, windGust) {
                     Text("No data").font(.body)
@@ -73,8 +54,8 @@ struct ObservationDetails: View {
             }
 
             Section("Pressure") {
-                Row("Barometric pressure", barometricPressure)
-                Row("Sea level pressure", seaLevelPressure)
+                OptionalRow("Barometric pressure", barometricPressure)
+                OptionalRow("Sea level pressure", seaLevelPressure)
 
                 if noValues(barometricPressure, seaLevelPressure) {
                     Text("No data").font(.body)
@@ -82,9 +63,9 @@ struct ObservationDetails: View {
             }
 
             Section("Precipitation") {
-                Row("Last hour", precipitationLastHour)
-                Row("Last 3 hours", precipitationLast3Hours)
-                Row("Last 6 hours", precipitationLast6Hours)
+                OptionalRow("Last hour", precipitationLastHour)
+                OptionalRow("Last 3 hours", precipitationLast3Hours)
+                OptionalRow("Last 6 hours", precipitationLast6Hours)
 
                 if noValues(precipitationLastHour, precipitationLast3Hours, precipitationLast6Hours) {
                     Text("None").font(.body)
@@ -92,7 +73,7 @@ struct ObservationDetails: View {
             }
 
             Section("Clouds") {
-                Row("Visibility", visibility)
+                OptionalRow("Visibility", visibility)
 
                 ForEach(Array(observation.cloudLayers.enumerated()), id: \.0) { (_, layer) in
                     VStack(alignment: .leading) {

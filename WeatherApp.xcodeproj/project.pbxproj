@@ -20,6 +20,7 @@
 		C595BB6627263B8F0049C645 /* ObservationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C595BB6527263B8F0049C645 /* ObservationDetails.swift */; };
 		C595BB6827263CC50049C645 /* Observation.json in Resources */ = {isa = PBXBuildFile; fileRef = C595BB6727263CC50049C645 /* Observation.json */; };
 		C595BB6A2726482B0049C645 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C595BB692726482B0049C645 /* Formatters.swift */; };
+		C595BB6C272648FC0049C645 /* OptionalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C595BB6B272648FC0049C645 /* OptionalRow.swift */; };
 		C5BECC2E27245D0E0001A36A /* Result+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC2D27245D0E0001A36A /* Result+Async.swift */; };
 		C5BECC3227259E370001A36A /* ForecastPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC3127259E370001A36A /* ForecastPointView.swift */; };
 		C5BECC342725A1420001A36A /* ExpandableSectionToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC332725A1420001A36A /* ExpandableSectionToggle.swift */; };
@@ -49,6 +50,7 @@
 		C595BB6527263B8F0049C645 /* ObservationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationDetails.swift; sourceTree = "<group>"; };
 		C595BB6727263CC50049C645 /* Observation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Observation.json; sourceTree = "<group>"; };
 		C595BB692726482B0049C645 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		C595BB6B272648FC0049C645 /* OptionalRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalRow.swift; sourceTree = "<group>"; };
 		C5BECC2D27245D0E0001A36A /* Result+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Async.swift"; sourceTree = "<group>"; };
 		C5BECC3127259E370001A36A /* ForecastPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPointView.swift; sourceTree = "<group>"; };
 		C5BECC332725A1420001A36A /* ExpandableSectionToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableSectionToggle.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				C504912F2723514A003194C2 /* ContentView.swift */,
 				C5C785862725F1120097A6C8 /* ForecastView.swift */,
 				C595BB6427263B7F0049C645 /* Observation */,
+				C595BB6B272648FC0049C645 /* OptionalRow.swift */,
 				C5BECC292724504D0001A36A /* Place */,
 				C5C785802725B30E0097A6C8 /* PlaceholderView.swift */,
 			);
@@ -282,6 +285,7 @@
 				C595BB6627263B8F0049C645 /* ObservationDetails.swift in Sources */,
 				C5BECC362725A2AA0001A36A /* ObservationStationView.swift in Sources */,
 				C595BB6A2726482B0049C645 /* Formatters.swift in Sources */,
+				C595BB6C272648FC0049C645 /* OptionalRow.swift in Sources */,
 				C504912E2723514A003194C2 /* WeatherApp.swift in Sources */,
 				C5BECC2E27245D0E0001A36A /* Result+Async.swift in Sources */,
 				C5BECC3E2725A6F30001A36A /* SampleData.swift in Sources */,
