@@ -12,21 +12,21 @@ struct ObservationStationView: View {
 
     @EnvironmentObject var environment: Environment
 
-    var observationStations: [ObservationStation]
+    var observationStations: FeatureCollection<ObservationStation>
 
     var body: some View {
-        ForEach(observationStations, id: \.stationIdentifier) { station in
+        ForEach(observationStations.features, id: \.properties.stationIdentifier) { station in
             NavigationLink(destination: asyncObservationView(for: station)) {
                 VStack(alignment: .leading) {
-                    Text(station.stationIdentifier).font(.body)
-                    Text(station.name).font(.caption)
+                    Text(station.properties.stationIdentifier).font(.body)
+                    Text(station.properties.name).font(.caption)
                 }
             }
         }
     }
 
-    private func asyncObservationView(for station: ObservationStation) -> some View {
-        AsyncView(title: station.stationIdentifier,
+    private func asyncObservationView(for station: Feature<ObservationStation>) -> some View {
+        AsyncView(title: station.properties.stationIdentifier,
                   provider: ObservationProvider(service: environment.weatherService,
                                                 station: station))
     }

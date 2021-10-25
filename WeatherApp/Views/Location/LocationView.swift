@@ -56,7 +56,7 @@ struct LocationView: View {
 
 struct PlaceView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationView(location: SampleData.location)
+        LocationView(location: Location.sample)
             .environmentObject(Environment())
     }
 }

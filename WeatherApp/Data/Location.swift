@@ -14,9 +14,9 @@ struct Location: Identifiable {
 
     var place: Place
 
-    var point: Point
+    var point: Feature<Point>
 
-    var observationStations: [ObservationStation]
+    var observationStations: FeatureCollection<ObservationStation>
 }
 
 // MARK: - API access
@@ -24,21 +24,11 @@ struct Location: Identifiable {
 extension Location {
     static func fetch(using service: WeatherService, for place: Place) async throws -> Location {
         let pointRequest = PointRequest(latitude: place.latitude, longitude: place.longitude)
-        let point = try await service.perform(request: pointRequest).properties
+        let point = try await service.perform(request: pointRequest)
 
         let stationsRequest = StationsRequest(for: point)
-        let stations = try await service.perform(request: stationsRequest).features.map { $0.properties }
+        let stations = try await service.perform(request: stationsRequest)
 
         return Location(id: UUID(), place: place, point: point, observationStations: stations)
-    }
-
-    func forecast(using service: WeatherService, hourly: Bool) async throws -> GridpointForecast {
-        try await service.perform(request: ForecastRequest(for: point, hourly: hourly)).properties
-    }
-}
-
-extension ObservationStation {
-    func latestObservation(using service: WeatherService) async throws -> Observation {
-        try await service.perform(request: LatestObservationRequest(for: self)).properties
     }
 }

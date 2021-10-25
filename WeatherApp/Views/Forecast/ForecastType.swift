@@ -22,7 +22,7 @@ enum ForecastType {
         }
     }
 
-    func fetchForecast(for location: Location, using service: WeatherService) async throws -> GridpointForecast {
+    func fetchForecast(for location: Location, using service: WeatherService) async throws -> Feature<GridpointForecast> {
         let hourly: Bool
         switch self {
         case .hourly:
@@ -31,6 +31,7 @@ enum ForecastType {
         case .sevenDay:
             hourly = false
         }
-        return try await location.forecast(using: service, hourly: hourly)
+
+        return try await service.perform(request: ForecastRequest(for: location.point, hourly: hourly))
     }
 }

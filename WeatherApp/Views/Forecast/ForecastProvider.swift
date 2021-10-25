@@ -16,11 +16,11 @@ struct ForecastProvider: AsyncViewProvider {
 
     var type: ForecastType
 
-    func run() async throws -> GridpointForecast {
+    func run() async throws -> Feature<GridpointForecast> {
         try await type.fetchForecast(for: location, using: service)
     }
 
-    func createView(with response: GridpointForecast) -> ForecastView {
+    func createView(with response: Feature<GridpointForecast>) -> ForecastView {
         ForecastView(location: location, forecast: response, type: type)
     }
 }

@@ -12,13 +12,13 @@ struct ObservationProvider: AsyncViewProvider {
 
     var service: WeatherService
 
-    var station: ObservationStation
+    var station: Feature<ObservationStation>
 
-    func run() async throws -> Observation {
-        try await station.latestObservation(using: service)
+    func run() async throws -> Feature<Observation> {
+        try await service.perform(request: LatestObservationRequest(stationId: station.properties.stationIdentifier))
     }
 
-    func createView(with response: Observation) -> ObservationView {
+    func createView(with response: Feature<Observation>) -> ObservationView {
         ObservationView(station: station, observation: response)
     }
 }

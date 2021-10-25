@@ -14,13 +14,13 @@ struct ForecastView: View {
 
     var location: Location
 
-    var forecast: GridpointForecast
+    var forecast: Feature<GridpointForecast>
 
     var type: ForecastType
 
     var body: some View {
         List {
-            ForEach(forecast.periods, id: \.number) { period in
+            ForEach(forecast.properties.periods, id: \.number) { period in
                 Section(sectionTitle(for: period)) {
                     if showDetailedForecast {
                         DetailedForecastView(period: period)

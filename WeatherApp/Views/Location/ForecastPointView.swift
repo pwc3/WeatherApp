@@ -22,16 +22,18 @@ struct ForecastPointView: View {
         }
     }
 
-    var point: Point
+    var point: Feature<Point>
 
     var body: some View {
-        Row(title: "Forecast office", value: point.forecastOfficeId)
-        Row(title: "Grid ID", value: point.gridId)
-        Row(title: "Grid X", value: point.gridX.description)
-        Row(title: "Grid Y", value: point.gridY.description)
-        Row(title: "Grid Y", value: point.radarStation)
+        Row(title: "Forecast office", value: point.properties.forecastOfficeId)
+        Row(title: "Grid ID", value: point.properties.gridId)
+        Row(title: "Grid X", value: point.properties.gridX.description)
+        Row(title: "Grid Y", value: point.properties.gridY.description)
+        Row(title: "Grid Y", value: point.properties.radarStation)
     }
 }
+
+import SampleWeatherData
 
 struct ForecastPointView_Previews: PreviewProvider {
     static var previews: some View {

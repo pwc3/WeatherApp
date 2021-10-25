@@ -35,6 +35,6 @@ struct PlaceList: View {
 
 struct PlaceList_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceList(places: SampleData.places)
+        PlaceList(places: Place.samples)
     }
 }

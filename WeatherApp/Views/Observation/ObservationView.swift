@@ -12,14 +12,14 @@ struct ObservationView: View {
 
     @EnvironmentObject var environment: Environment
 
-    var station: ObservationStation
+    var station: Feature<ObservationStation>
 
-    var observation: Observation
+    var observation: Feature<Observation>
 
     var body: some View {
         List {
             Section {
-                Text(station.name)
+                Text(station.properties.name)
                     .font(.body)
 
                 OptionalRow("Elevation", elevation)
@@ -72,14 +72,14 @@ struct ObservationView: View {
             Section("Clouds") {
                 OptionalRow("Visibility", visibility)
 
-                ForEach(Array(observation.cloudLayers.enumerated()), id: \.0) { (_, layer) in
+                ForEach(Array(observation.properties.cloudLayers.enumerated()), id: \.0) { (_, layer) in
                     VStack(alignment: .leading) {
                         Text("Cloud layer").font(.caption)
                         Text(format(layer)).font(.body)
                     }
                 }
 
-                if observation.cloudLayers.isEmpty && noValues(visibility) {
+                if observation.properties.cloudLayers.isEmpty && noValues(visibility) {
                     Text("No data").font(.body)
                 }
             }
@@ -91,83 +91,83 @@ struct ObservationView: View {
     }
 
     private var elevation: String? {
-        try? station.elevation.length?.formatted()
+        try? station.properties.elevation.length?.formatted()
     }
 
     private var timestamp: String? {
-        Formatters.timestamp.string(from: observation.timestamp)
+        Formatters.timestamp.string(from: observation.properties.timestamp)
     }
 
     private var temperature: String? {
-        try? observation.temperature.temperature?.formatted()
+        try? observation.properties.temperature.temperature?.formatted()
     }
 
     private var dewPoint: String? {
-        try? observation.dewpoint.temperature?.formatted()
+        try? observation.properties.dewpoint.temperature?.formatted()
     }
 
     private var minTemp: String? {
-        try? observation.minTemperatureLast24Hours.temperature?.formatted()
+        try? observation.properties.minTemperatureLast24Hours.temperature?.formatted()
     }
 
     private var maxTemp: String? {
-        try? observation.maxTemperatureLast24Hours.temperature?.formatted()
+        try? observation.properties.maxTemperatureLast24Hours.temperature?.formatted()
     }
 
     private var relativeHumidity: String? {
-        try? observation.relativeHumidity.percent.map {
+        try? observation.properties.relativeHumidity.percent.map {
             String(format: "%.0f%%", $0)
         }
     }
 
     private var windChill: String? {
-        try? observation.windChill.temperature?.formatted()
+        try? observation.properties.windChill.temperature?.formatted()
     }
 
     private var heatIndex: String? {
-        try? observation.heatIndex.temperature?.formatted()
+        try? observation.properties.heatIndex.temperature?.formatted()
     }
 
     private var windSpeed: String? {
-        try? observation.windSpeed.speed?.formatted()
+        try? observation.properties.windSpeed.speed?.formatted()
     }
 
     private var windGust: String? {
-        try? observation.windGust.speed?.formatted()
+        try? observation.properties.windGust.speed?.formatted()
     }
 
     private var precipitationLastHour: String? {
-        try? observation.precipitationLastHour?.length?.formatted()
+        try? observation.properties.precipitationLastHour?.length?.formatted()
     }
 
     private var precipitationLast3Hours: String? {
-        try? observation.precipitationLast3Hours?.length?.formatted()
+        try? observation.properties.precipitationLast3Hours?.length?.formatted()
     }
 
     private var precipitationLast6Hours: String? {
-        try? observation.precipitationLast6Hours?.length?.formatted()
+        try? observation.properties.precipitationLast6Hours?.length?.formatted()
     }
 
     private var windDirection: String? {
-        try? observation.windDirection.angle.map {
+        try? observation.properties.windDirection.angle.map {
             String(format: "%.0f°", $0.converted(to: .degrees).value)
         }
     }
 
     private var barometricPressure: String? {
-        try? observation.barometricPressure.pressure.map {
+        try? observation.properties.barometricPressure.pressure.map {
             return $0.converted(to: .millibars).formatted()
         }
     }
 
     private var seaLevelPressure: String? {
-        try? observation.seaLevelPressure.pressure.map {
+        try? observation.properties.seaLevelPressure.pressure.map {
             return $0.converted(to: .millibars).formatted()
         }
     }
 
     private var visibility: String? {
-        try? observation.visibility.length?.formatted()
+        try? observation.properties.visibility.length?.formatted()
     }
 
     private func format(_ layer: CloudLayer) -> String {
