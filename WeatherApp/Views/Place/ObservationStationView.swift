@@ -13,9 +13,11 @@ struct ObservationStationView: View {
 
     var body: some View {
         ForEach(observationStations, id: \.stationIdentifier) { station in
-            VStack(alignment: .leading) {
-                Text(station.stationIdentifier).font(.body)
-                Text(station.name).font(.caption)
+            NavigationLink(destination: ObservationView(station: station)) {
+                VStack(alignment: .leading) {
+                    Text(station.stationIdentifier).font(.body)
+                    Text(station.name).font(.caption)
+                }
             }
         }
     }

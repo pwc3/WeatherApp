@@ -17,6 +17,9 @@
 		C5049145272355CF003194C2 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5049144272355CF003194C2 /* Place.swift */; };
 		C5049147272359C9003194C2 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5049146272359C9003194C2 /* PlaceView.swift */; };
 		C504914D272363B9003194C2 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504914C272363B9003194C2 /* ErrorView.swift */; };
+		C595BB6627263B8F0049C645 /* ObservationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C595BB6527263B8F0049C645 /* ObservationDetails.swift */; };
+		C595BB6827263CC50049C645 /* Observation.json in Resources */ = {isa = PBXBuildFile; fileRef = C595BB6727263CC50049C645 /* Observation.json */; };
+		C595BB6A2726482B0049C645 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C595BB692726482B0049C645 /* Formatters.swift */; };
 		C5BECC2E27245D0E0001A36A /* Result+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC2D27245D0E0001A36A /* Result+Async.swift */; };
 		C5BECC3227259E370001A36A /* ForecastPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC3127259E370001A36A /* ForecastPointView.swift */; };
 		C5BECC342725A1420001A36A /* ExpandableSectionToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC332725A1420001A36A /* ExpandableSectionToggle.swift */; };
@@ -43,6 +46,9 @@
 		C5049144272355CF003194C2 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C5049146272359C9003194C2 /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		C504914C272363B9003194C2 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		C595BB6527263B8F0049C645 /* ObservationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationDetails.swift; sourceTree = "<group>"; };
+		C595BB6727263CC50049C645 /* Observation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Observation.json; sourceTree = "<group>"; };
+		C595BB692726482B0049C645 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		C5BECC2D27245D0E0001A36A /* Result+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Async.swift"; sourceTree = "<group>"; };
 		C5BECC3127259E370001A36A /* ForecastPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPointView.swift; sourceTree = "<group>"; };
 		C5BECC332725A1420001A36A /* ExpandableSectionToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableSectionToggle.swift; sourceTree = "<group>"; };
@@ -107,13 +113,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		C595BB6427263B7F0049C645 /* Observation */ = {
+			isa = PBXGroup;
+			children = (
+				C5C785842725E9750097A6C8 /* ObservationView.swift */,
+				C595BB6527263B8F0049C645 /* ObservationDetails.swift */,
+			);
+			path = Observation;
+			sourceTree = "<group>";
+		};
 		C5BECC28272450400001A36A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				C5BECC3F2725A8E30001A36A /* Common */,
 				C504912F2723514A003194C2 /* ContentView.swift */,
 				C5C785862725F1120097A6C8 /* ForecastView.swift */,
-				C5C785842725E9750097A6C8 /* ObservationView.swift */,
+				C595BB6427263B7F0049C645 /* Observation */,
 				C5BECC292724504D0001A36A /* Place */,
 				C5C785802725B30E0097A6C8 /* PlaceholderView.swift */,
 			);
@@ -135,10 +150,11 @@
 			isa = PBXGroup;
 			children = (
 				C504913E27235336003194C2 /* Environment.swift */,
+				C595BB692726482B0049C645 /* Formatters.swift */,
 				C5BECC3B2725A6A60001A36A /* LoadDecodableFromFile.swift */,
+				C5BECC422725AA7F0001A36A /* Location.swift */,
 				C5049144272355CF003194C2 /* Place.swift */,
 				C5BECC3D2725A6F30001A36A /* SampleData.swift */,
-				C5BECC422725AA7F0001A36A /* Location.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -147,9 +163,10 @@
 			isa = PBXGroup;
 			children = (
 				C50491312723514F003194C2 /* Assets.xcassets */,
+				C595BB6727263CC50049C645 /* Observation.json */,
+				C5BECC402725A95A0001A36A /* ObservationStationsResponse.json */,
 				C5BECC372725A52B0001A36A /* Places.json */,
 				C5BECC392725A6040001A36A /* PointResponse.json */,
-				C5BECC402725A95A0001A36A /* ObservationStationsResponse.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -239,6 +256,7 @@
 				C50491352723514F003194C2 /* Preview Assets.xcassets in Resources */,
 				C5BECC412725A95A0001A36A /* ObservationStationsResponse.json in Resources */,
 				C5BECC3A2725A6040001A36A /* PointResponse.json in Resources */,
+				C595BB6827263CC50049C645 /* Observation.json in Resources */,
 				C50491322723514F003194C2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,7 +279,9 @@
 				C5C785852725E9750097A6C8 /* ObservationView.swift in Sources */,
 				C5BECC342725A1420001A36A /* ExpandableSectionToggle.swift in Sources */,
 				C5049147272359C9003194C2 /* PlaceView.swift in Sources */,
+				C595BB6627263B8F0049C645 /* ObservationDetails.swift in Sources */,
 				C5BECC362725A2AA0001A36A /* ObservationStationView.swift in Sources */,
+				C595BB6A2726482B0049C645 /* Formatters.swift in Sources */,
 				C504912E2723514A003194C2 /* WeatherApp.swift in Sources */,
 				C5BECC2E27245D0E0001A36A /* Result+Async.swift in Sources */,
 				C5BECC3E2725A6F30001A36A /* SampleData.swift in Sources */,

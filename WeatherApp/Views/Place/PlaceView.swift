@@ -55,18 +55,14 @@ struct PlaceView: View {
                         }
                     }
 
-                    Section {
-                        ExpandableSectionToggle(title: "Nearby observation stations", isExpanded: $isObservationStationListExpanded)
+                    Section(footer: Text("Select a station to see current conditions at that location")) {
+                        ExpandableSectionToggle(title: "Observation stations", isExpanded: $isObservationStationListExpanded)
                         if isObservationStationListExpanded {
                             ObservationStationView(observationStations: location.observationStations)
                         }
                     }
 
                     Section {
-                        NavigationLink(destination: ObservationView(location: location)) {
-                            Text("Current conditions")
-                        }
-
                         NavigationLink(destination: ForecastView(location: location, type: .hourly)) {
                             Text("Hourly forecast")
                         }

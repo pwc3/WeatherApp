@@ -39,8 +39,10 @@ extension Location {
     func hourlyForecast(using service: WeatherService) async throws -> GridpointForecast {
         try await service.hourlyForecast(for: point).properties
     }
+}
 
+extension ObservationStation {
     func latestObservation(using service: WeatherService) async throws -> Observation {
-        try await service.latestObservation(for: observationStations[0]).properties
+        try await service.latestObservation(for: self).properties
     }
 }

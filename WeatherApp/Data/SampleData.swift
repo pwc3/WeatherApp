@@ -27,4 +27,9 @@ struct SampleData {
     static var location: Location = {
         Location(id: UUID(), place: places[0], point: point, observationStations: observationStations)
     }()
+
+    static var observation: Observation = {
+        let feature: Feature<Observation> = load(fromFilename: "Observation.json")
+        return feature.properties
+    }()
 }
