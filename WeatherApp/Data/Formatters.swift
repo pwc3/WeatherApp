@@ -8,9 +8,17 @@
 import Foundation
 
 struct Formatters {
-    static var timestampFormatter: DateFormatter = {
+    static var hour: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "h a"
+        df.locale = Locale(identifier: "en_US_POSIX")
+        return df
+    }()
+
+    static var timestamp: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "MMM d, h:mm a ZZZZ"
+        df.locale = Locale(identifier: "en_US_POSIX")
         return df
     }()
 }

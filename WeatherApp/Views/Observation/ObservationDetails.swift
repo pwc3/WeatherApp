@@ -98,7 +98,7 @@ struct ObservationDetails: View {
     }
 
     private var timestamp: String? {
-        Formatters.timestampFormatter.string(from: observation.timestamp)
+        Formatters.timestamp.string(from: observation.timestamp)
     }
 
     private var temperature: String? {

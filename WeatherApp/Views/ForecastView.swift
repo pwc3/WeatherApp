@@ -41,28 +41,6 @@ struct ForecastView: View {
         case failed(Error)
     }
 
-    private struct Row: View {
-        var title: String
-        var value: String
-
-        init(_ title: String, _ value: () throws -> String?) {
-            self.title = title
-            do {
-                self.value = try value() ?? "(n/a)"
-            }
-            catch {
-                self.value = "(error)"
-            }
-        }
-
-        var body: some View {
-            VStack(alignment: .leading) {
-                Text(title).font(.caption)
-                Text(value).font(.body)
-            }
-        }
-    }
-
     @EnvironmentObject var environment: Environment
 
     @State private var loadState: LoadState = .loading
@@ -95,16 +73,15 @@ struct ForecastView: View {
                             }
 
                             if showStartAndEndTimes {
-                                Row("Start time") { period.startTime.description }
-                                Row("End time") { period.endTime.description }
-                                Row("Is daytime?") { period.isDaytime ? "Yes" : "No"}
+                                OptionalRow("Start time", Formatters.timestamp.string(for: period.startTime.description))
+                                OptionalRow("End time", Formatters.timestamp.string(for: period.endTime.description))
                             }
 
-                            Row("Temperature") { String(format: "%d°%@", period.temperature, period.temperatureUnit) }
-                            Row("Temperature trend") { period.temperatureTrend?.rawValue.capitalized ?? "(n/a)" }
-                            Row("Wind speed") { period.windSpeed }
-                            Row("Wind gust") { period.windGust }
-                            Row("Wind direction") { period.windDirection.rawValue }
+                            OptionalRow("Temperature", String(format: "%d°%@", period.temperature, period.temperatureUnit))
+                            OptionalRow("Temperature trend", period.temperatureTrend?.rawValue.capitalized)
+                            OptionalRow("Wind speed", period.windSpeed)
+                            OptionalRow("Wind gust", period.windGust)
+                            OptionalRow("Wind direction", period.windDirection.rawValue)
                         }
                     }
                 }
@@ -116,21 +93,13 @@ struct ForecastView: View {
         .navigationTitle(type.description)
     }
 
-    private let sectionTitleTimeFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "h a"
-        df.locale = Locale(identifier: "en_US_POSIX")
-
-        return df
-    }()
-
     private func sectionTitle(for period: GridpointForecastPeriod) -> String {
         switch type {
         case .sevenDay:
             return period.name
 
         case .hourly:
-            return sectionTitleTimeFormatter.string(from: period.startTime)
+            return Formatters.hour.string(from: period.startTime)
         }
     }
 
