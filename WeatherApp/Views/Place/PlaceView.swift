@@ -63,11 +63,25 @@ struct PlaceView: View {
                     }
 
                     Section {
-                        NavigationLink(destination: ForecastView(location: location, type: .hourly)) {
+                        NavigationLink(
+                            destination: AsyncView(
+                                title: "Hourly forecast",
+                                provider: ForecastProvider(
+                                    service: environment.weatherService,
+                                    location: location,
+                                    type: .hourly)))
+                        {
                             Text("Hourly forecast")
                         }
 
-                        NavigationLink(destination: ForecastView(location: location, type: .sevenDay)) {
+                        NavigationLink(
+                            destination: AsyncView(
+                                title: "Seven-day forecast",
+                                provider: ForecastProvider(
+                                    service: environment.weatherService,
+                                    location: location,
+                                    type: .sevenDay)))
+                        {
                             Text("Seven-day forecast")
                         }
                     }
