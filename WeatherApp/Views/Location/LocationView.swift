@@ -35,29 +35,22 @@ struct LocationView: View {
             }
 
             Section {
-                NavigationLink(
-                    destination: AsyncView(
-                        title: "Hourly forecast",
-                        provider: ForecastProvider(
-                            service: environment.weatherService,
-                            location: location,
-                            type: .hourly)))
-                {
+                NavigationLink(destination: asyncForecastView(for: location, type: .hourly)) {
                     Text("Hourly forecast")
                 }
 
-                NavigationLink(
-                    destination: AsyncView(
-                        title: "Seven-day forecast",
-                        provider: ForecastProvider(
-                            service: environment.weatherService,
-                            location: location,
-                            type: .sevenDay)))
-                {
+                NavigationLink(destination: asyncForecastView(for: location, type: .sevenDay)) {
                     Text("Seven-day forecast")
                 }
             }
         }
+    }
+
+    private func asyncForecastView(for location: Location, type: ForecastType) -> some View {
+        AsyncView(title: type.description,
+                  provider: ForecastProvider(service: environment.weatherService,
+                                             location: location,
+                                             type: type))
     }
 }
 

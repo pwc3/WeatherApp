@@ -42,7 +42,17 @@ where ProviderType: AsyncViewProvider, ProviderType.ResponseType == ResponseType
                 provider.createView(with: response)
 
             case .failed(let error):
-                ErrorView(error: error)
+                VStack(alignment: .center, spacing: 10) {
+                    Text("An error occurred")
+                        .font(.headline)
+
+                    Text(error.localizedDescription)
+                        .font(.caption)
+
+                    Button("Retry") {
+                        loadState = .loading
+                    }
+                }
             }
         }
         .navigationTitle(title)

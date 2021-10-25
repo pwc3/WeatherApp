@@ -17,19 +17,19 @@ struct PlaceList: View {
         NavigationView {
             List {
                 ForEach(places) { place in
-                    NavigationLink(
-                        destination: AsyncView(
-                            title: place.name,
-                            provider: LocationProvider(
-                                service: environment.weatherService,
-                                place: place)))
-                    {
+                    NavigationLink(destination:asyncLocationView(for: place)) {
                         Text(place.name)
                     }
                 }
             }
             .navigationTitle("Places")
         }
+    }
+
+    private func asyncLocationView(for place: Place) -> some View {
+        AsyncView(title: place.name,
+                  provider: LocationProvider(service: environment.weatherService,
+                                             place: place))
     }
 }
 
