@@ -64,12 +64,11 @@ struct ForecastView: View {
                 List {
                     ForEach(forecast.periods, id: \.number) { period in
                         Section(sectionTitle(for: period)) {
-                            Text(period.shortForecast)
-                                .font(.body)
-
                             if showDetailedForecast {
-                                Text(period.detailedForecast)
-                                    .font(.body)
+                                DetailedForecastView(period: period)
+                            }
+                            else {
+                                Text(period.shortForecast).font(.body)
                             }
 
                             if showStartAndEndTimes {
