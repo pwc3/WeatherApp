@@ -17,9 +17,14 @@ struct PlaceList: View {
         NavigationView {
             List {
                 ForEach(places) { place in
-                    NavigationLink(destination: PlaceView(place: place)) {
+                    NavigationLink(
+                        destination: AsyncView(
+                            title: place.name,
+                            provider: LocationProvider(
+                                service: environment.weatherService,
+                                place: place)))
+                    {
                         Text(place.name)
-                            .foregroundColor(.primary)
                     }
                 }
             }

@@ -7,7 +7,6 @@
 
 import Foundation
 import WeatherAPI
-import SwiftUI
 
 struct ForecastProvider: AsyncViewProvider {
 
