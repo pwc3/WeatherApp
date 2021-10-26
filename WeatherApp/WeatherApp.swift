@@ -17,6 +17,7 @@ struct WeatherApp: App {
         WindowGroup {
             ContentView(places: Place.samples)
                 .environmentObject(environment)
+                .navigationTitle("Weather")
         }
     }
 }
