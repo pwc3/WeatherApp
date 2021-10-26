@@ -29,11 +29,6 @@ struct ForecastView: View {
                         Text(period.shortForecast).font(.body)
                     }
 
-                    if showStartAndEndTimes {
-                        OptionalRow("Start time", Formatters.timestamp.string(for: period.startTime.description))
-                        OptionalRow("End time", Formatters.timestamp.string(for: period.endTime.description))
-                    }
-
                     OptionalRow("Temperature", String(format: "%d°%@", period.temperature, period.temperatureUnit))
                     OptionalRow("Temperature trend", period.temperatureTrend?.rawValue.capitalized)
                     OptionalRow("Wind speed", period.windSpeed)
@@ -57,14 +52,18 @@ struct ForecastView: View {
     private var showDetailedForecast: Bool {
         return type == .sevenDay
     }
-
-    private var showStartAndEndTimes: Bool {
-        return type == .sevenDay
-    }
 }
+
+import SampleWeatherData
 
 struct ForecastView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("TBD")
+        ForecastView(location: Location.sample,
+                     forecast: SampleData.hourlyGridpointForecast,
+                     type: .hourly)
+
+        ForecastView(location: Location.sample,
+                     forecast: SampleData.sevenDayGridpointForecast,
+                     type: .sevenDay)
     }
 }

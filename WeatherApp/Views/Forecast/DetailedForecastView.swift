@@ -21,8 +21,10 @@ struct DetailedForecastView: View {
     }
 }
 
+import SampleWeatherData
+
 struct DetailedForecastView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("TBD")
+        DetailedForecastView(period: SampleData.hourlyGridpointForecast.properties.periods[0])
     }
 }

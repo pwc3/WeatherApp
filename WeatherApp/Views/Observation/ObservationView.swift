@@ -186,8 +186,11 @@ struct ObservationView: View {
     }
 }
 
+import SampleWeatherData
+
 struct ObservationView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("TBD")
+        ObservationView(station: SampleData.observationStations.features[0],
+                        observation: SampleData.observation)
     }
 }

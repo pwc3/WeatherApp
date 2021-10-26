@@ -61,6 +61,6 @@ where ProviderType: AsyncViewProvider, ProviderType.ResponseType == ResponseType
 
 struct AsyncView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("TBD")
+        Text("No preview provided")
     }
 }

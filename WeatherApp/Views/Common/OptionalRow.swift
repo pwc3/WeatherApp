@@ -30,6 +30,10 @@ struct OptionalRow: View {
 
 struct OptionalRow_Previews: PreviewProvider {
     static var previews: some View {
-        OptionalRow("Title", "Value")
+        List {
+            OptionalRow("Title 1", "Value 1")
+            OptionalRow("Title 2", "Value 2")
+            OptionalRow("Title 3", "Value 3")
+        }
     }
 }
