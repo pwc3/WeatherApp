@@ -18,7 +18,7 @@ struct BubbleView: View {
                 .font(.caption)
                 .fontWeight(.bold)
                 .padding(5)
-                .background(backgroundColor)
+                .background(Color(UIColor.systemBackground))
                 .cornerRadius(5)
 
             GeometryReader { geometry in
@@ -34,7 +34,7 @@ struct BubbleView: View {
                         .zero
                     ])
                 }
-                .fill(backgroundColor)
+                .fill(Color(UIColor.systemBackground))
             }
             .frame(width: 10, height: 10, alignment: .center)
         }

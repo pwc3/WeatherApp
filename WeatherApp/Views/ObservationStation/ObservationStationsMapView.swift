@@ -95,8 +95,9 @@ struct ObservationStationsMapView: View {
             Text("Select a station to see current conditions")
                 .font(.caption)
                 .fontWeight(.bold)
+                .foregroundColor(.primary)
                 .padding(5)
-                .background(Color(white: 1.0, opacity: 0.85))
+                .background(Color(UIColor.systemBackground))
                 .cornerRadius(5)
                 .padding(.top, 10)
         }
