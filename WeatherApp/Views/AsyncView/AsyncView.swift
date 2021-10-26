@@ -56,6 +56,7 @@ where ProviderType: AsyncViewProvider, ProviderType.ResponseType == ResponseType
             }
         }
         .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 

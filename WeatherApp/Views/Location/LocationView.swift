@@ -28,6 +28,10 @@ struct LocationView: View {
             }
 
             Section(footer: Text("Select a station to see current conditions at that location")) {
+                NavigationLink(destination: ObservationStationsMapView(stations: location.observationStations)) {
+                    Text("Station map")
+                }
+
                 ExpandableSectionToggle(title: "Observation stations", isExpanded: $isObservationStationListExpanded)
                 if isObservationStationListExpanded {
                     ObservationStationView(observationStations: location.observationStations)
