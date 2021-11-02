@@ -68,21 +68,17 @@ struct LocationView: View {
                 }
 
                 Section {
-                    NavigationLink(destination: forecastView(for: location, type: .hourly)) {
+                    NavigationLink(destination: ForecastView(viewModel: .init(location: location, forecastType: .hourly))) {
                         Text("Hourly forecast")
                     }
 
-                    NavigationLink(destination: forecastView(for: location, type: .sevenDay)) {
+                    NavigationLink(destination: ForecastView(viewModel: .init(location: location, forecastType: .sevenDay))) {
                         Text("Seven-day forecast")
                     }
                 }
             }
         }
         .navigationTitle(viewModel.place.name)
-    }
-
-    private func forecastView(for location: Location, type: ForecastType) -> some View {
-        ForecastView(viewModel: ForecastViewModel(location: location, forecastType: type))
     }
 }
 

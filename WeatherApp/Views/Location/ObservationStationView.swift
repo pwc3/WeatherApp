@@ -34,19 +34,13 @@ struct ObservationStationView: View {
 
     var body: some View {
         ForEach(observationStations.features, id: \.properties.stationIdentifier) { station in
-            NavigationLink(destination: asyncObservationView(for: station)) {
+            NavigationLink(destination: ObservationView(viewModel: .init(station: station))) {
                 VStack(alignment: .leading) {
                     Text(station.properties.stationIdentifier).font(.body)
                     Text(station.properties.name).font(.caption)
                 }
             }
         }
-    }
-
-    private func asyncObservationView(for station: Feature<ObservationStation>) -> some View {
-        AsyncView(title: station.properties.stationIdentifier,
-                  provider: ObservationProvider(service: environment.weatherService,
-                                                station: station))
     }
 }
 

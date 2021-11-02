@@ -35,17 +35,13 @@ struct PlaceList: View {
         NavigationView {
             List {
                 ForEach(places) { place in
-                    NavigationLink(destination: locationView(for: place)) {
+                    NavigationLink(destination: LocationView(viewModel: .init(place: place))) {
                         Text(place.name)
                     }
                 }
             }
             .navigationTitle("Places")
         }
-    }
-
-    private func locationView(for place: Place) -> some View {
-        LocationView(viewModel: LocationViewModel(place: place))
     }
 }
 
