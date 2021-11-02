@@ -20,6 +20,7 @@
 		C5049145272355CF003194C2 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5049144272355CF003194C2 /* Place.swift */; };
 		C5049147272359C9003194C2 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5049146272359C9003194C2 /* LocationView.swift */; };
 		C55407A9272655AC00CB73D3 /* DetailedForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55407A8272655AC00CB73D3 /* DetailedForecastView.swift */; };
+		C55E07B12731D382009AC547 /* ObservationModelFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E07B02731D382009AC547 /* ObservationModelFormatter.swift */; };
 		C595BB6827263CC50049C645 /* Observation.json in Resources */ = {isa = PBXBuildFile; fileRef = C595BB6727263CC50049C645 /* Observation.json */; };
 		C595BB6A2726482B0049C645 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C595BB692726482B0049C645 /* Formatters.swift */; };
 		C595BB6C272648FC0049C645 /* OptionalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C595BB6B272648FC0049C645 /* OptionalRow.swift */; };
@@ -57,6 +58,7 @@
 		C5049144272355CF003194C2 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C5049146272359C9003194C2 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		C55407A8272655AC00CB73D3 /* DetailedForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedForecastView.swift; sourceTree = "<group>"; };
+		C55E07B02731D382009AC547 /* ObservationModelFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationModelFormatter.swift; sourceTree = "<group>"; };
 		C595BB6727263CC50049C645 /* Observation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Observation.json; sourceTree = "<group>"; };
 		C595BB692726482B0049C645 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		C595BB6B272648FC0049C645 /* OptionalRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalRow.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		C595BB6427263B7F0049C645 /* Observation */ = {
 			isa = PBXGroup;
 			children = (
+				C55E07B02731D382009AC547 /* ObservationModelFormatter.swift */,
 				C5C785842725E9750097A6C8 /* ObservationView.swift */,
 				C5D5FF6A2731B31A00028DD4 /* ObservationViewModel.swift */,
 			);
@@ -335,6 +338,7 @@
 				C5BECC3E2725A6F30001A36A /* Location+Sample.swift in Sources */,
 				C5D5FF6527318C8400028DD4 /* LoadingView.swift in Sources */,
 				C5D5FF6B2731B31A00028DD4 /* ObservationViewModel.swift in Sources */,
+				C55E07B12731D382009AC547 /* ObservationModelFormatter.swift in Sources */,
 				C59A47402728928C00C15189 /* BubbleView.swift in Sources */,
 				C500D87627273BA500C4EBAB /* Place+Sample.swift in Sources */,
 				C5D5FF632731862C00028DD4 /* ErrorView.swift in Sources */,

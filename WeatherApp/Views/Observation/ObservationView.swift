@@ -34,80 +34,91 @@ struct ObservationView: View {
 
     var body: some View {
         List {
-            Section {
-                Text(viewModel.stationName)
-                    .font(.body)
+            switch viewModel.state {
+            case .loading:
+                LoadingView()
+                    .onAppear {
+                        viewModel.load(environment)
+                    }
 
-                OptionalRow("Elevation", viewModel.elevation)
-                OptionalRow("Timestamp", viewModel.timestamp)
-            }
+            case .failure(let error):
+                ErrorView(error: error, onRetry: { viewModel.load(environment) })
 
-            Section("Temperature") {
-                if viewModel.hasTemperatureData {
-                    OptionalRow("Temperature", viewModel.temperature)
-                    OptionalRow("Dew point", viewModel.dewPoint)
-                    OptionalRow("Min. temp. (last 24 hrs.)", viewModel.minTemp)
-                    OptionalRow("Max. temp. (last 24 hrs.)", viewModel.maxTemp)
-                    OptionalRow("Relative humidity", viewModel.relativeHumidity)
-                    OptionalRow("Wind chill", viewModel.windChill)
-                    OptionalRow("Heat index", viewModel.heatIndex)
-                }
-                else {
-                    Text("No data").font(.body)
-                }
-            }
+            case .success(let model):
+                Section {
+                    Text(model.stationName)
+                        .font(.body)
 
-            Section("Wind") {
-                if viewModel.hasWindData {
-                    OptionalRow("Wind direction", viewModel.windDirection)
-                    OptionalRow("Wind speed", viewModel.windSpeed)
-                    OptionalRow("Wind gust", viewModel.windGust)
+                    OptionalRow("Elevation", model.elevation)
+                    OptionalRow("Timestamp", model.timestamp)
                 }
-                else {
-                    Text("No data").font(.body)
-                }
-            }
 
-            Section("Pressure") {
-                if viewModel.hasPressureData {
-                    OptionalRow("Barometric pressure", viewModel.barometricPressure)
-                    OptionalRow("Sea level pressure", viewModel.seaLevelPressure)
-                }
-                else {
-                    Text("No data").font(.body)
-                }
-            }
-
-            Section("Precipitation") {
-                if viewModel.hasPrecipitationData {
-                    OptionalRow("Last hour", viewModel.precipitationLastHour)
-                    OptionalRow("Last 3 hours", viewModel.precipitationLast3Hours)
-                    OptionalRow("Last 6 hours", viewModel.precipitationLast6Hours)
-                }
-                else {
-                    Text("None").font(.body)
-                }
-            }
-
-            Section("Clouds") {
-                if viewModel.hasCloudData {
-                    OptionalRow("Visibility", viewModel.visibility)
-
-                    ForEach(Array(viewModel.formattedCloudLayers.enumerated()), id: \.0) { (_, layer) in
-                        VStack(alignment: .leading) {
-                            Text("Cloud layer").font(.caption)
-                            Text(layer).font(.body)
-                        }
+                Section("Temperature") {
+                    if model.hasTemperatureData {
+                        OptionalRow("Temperature", model.temperature)
+                        OptionalRow("Dew point", model.dewPoint)
+                        OptionalRow("Min. temp. (last 24 hrs.)", model.minTemp)
+                        OptionalRow("Max. temp. (last 24 hrs.)", model.maxTemp)
+                        OptionalRow("Relative humidity", model.relativeHumidity)
+                        OptionalRow("Wind chill", model.windChill)
+                        OptionalRow("Heat index", model.heatIndex)
+                    }
+                    else {
+                        Text("No data").font(.body)
                     }
                 }
-                else {
-                    Text("No data").font(.body)
+
+                Section("Wind") {
+                    if model.hasWindData {
+                        OptionalRow("Wind direction", model.windDirection)
+                        OptionalRow("Wind speed", model.windSpeed)
+                        OptionalRow("Wind gust", model.windGust)
+                    }
+                    else {
+                        Text("No data").font(.body)
+                    }
+                }
+
+                Section("Pressure") {
+                    if model.hasPressureData {
+                        OptionalRow("Barometric pressure", model.barometricPressure)
+                        OptionalRow("Sea level pressure", model.seaLevelPressure)
+                    }
+                    else {
+                        Text("No data").font(.body)
+                    }
+                }
+
+                Section("Precipitation") {
+                    if model.hasPrecipitationData {
+                        OptionalRow("Last hour", model.precipitationLastHour)
+                        OptionalRow("Last 3 hours", model.precipitationLast3Hours)
+                        OptionalRow("Last 6 hours", model.precipitationLast6Hours)
+                    }
+                    else {
+                        Text("None").font(.body)
+                    }
+                }
+
+                Section("Clouds") {
+                    if model.hasCloudData {
+                        OptionalRow("Visibility", model.visibility)
+
+                        ForEach(Array(model.formattedCloudLayers.enumerated()), id: \.0) { (_, layer) in
+                            VStack(alignment: .leading) {
+                                Text("Cloud layer").font(.caption)
+                                Text(layer).font(.body)
+                            }
+                        }
+                    }
+                    else {
+                        Text("No data").font(.body)
+                    }
                 }
             }
         }
+        .navigationTitle(viewModel.stationIdentifier)
     }
-
-
 }
 
 import SampleWeatherData
