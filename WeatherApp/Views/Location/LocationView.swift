@@ -30,45 +30,58 @@ struct LocationView: View {
 
     @EnvironmentObject var environment: Environment
 
+    @ObservedObject var viewModel: LocationViewModel
+
     @State private var isPointMetadataExpanded = false
 
     @State private var isObservationStationListExpanded = false
 
-    var location: Location
-
     var body: some View {
         List {
-            Section {
-                ExpandableSectionToggle(title: "Forecast point", isExpanded: $isPointMetadataExpanded)
-                if isPointMetadataExpanded {
-                    ForecastPointView(point: location.point)
-                }
-            }
+            switch viewModel.state {
+            case .loading:
+                LoadingView()
+                    .onAppear {
+                        viewModel.load(environment)
+                    }
 
-            Section(footer: Text("Select a station to see current conditions at that location")) {
-                NavigationLink(destination: ObservationStationsMapView(stations: location.observationStations)) {
-                    Text("Station map")
-                }
-
-                ExpandableSectionToggle(title: "Observation stations", isExpanded: $isObservationStationListExpanded)
-                if isObservationStationListExpanded {
-                    ObservationStationView(observationStations: location.observationStations)
-                }
-            }
-
-            Section {
-                NavigationLink(destination: asyncForecastView(for: location, type: .hourly)) {
-                    Text("Hourly forecast")
+            case .success(let location):
+                Section {
+                    ExpandableSectionToggle(title: "Forecast point", isExpanded: $isPointMetadataExpanded)
+                    if isPointMetadataExpanded {
+                        ForecastPointView(point: location.point)
+                    }
                 }
 
-                NavigationLink(destination: asyncForecastView(for: location, type: .sevenDay)) {
-                    Text("Seven-day forecast")
+                Section(footer: Text("Select a station to see current conditions at that location")) {
+                    NavigationLink(destination: ObservationStationsMapView(stations: location.observationStations)) {
+                        Text("Station map")
+                    }
+
+                    ExpandableSectionToggle(title: "Observation stations", isExpanded: $isObservationStationListExpanded)
+                    if isObservationStationListExpanded {
+                        ObservationStationView(observationStations: location.observationStations)
+                    }
                 }
+
+                Section {
+                    NavigationLink(destination: forecastView(for: location, type: .hourly)) {
+                        Text("Hourly forecast")
+                    }
+
+                    NavigationLink(destination: forecastView(for: location, type: .sevenDay)) {
+                        Text("Seven-day forecast")
+                    }
+                }
+
+            case .failure(let error):
+                ErrorView(error: error, onRetry: { viewModel.load(environment) })
             }
         }
+        .navigationTitle(viewModel.place.name)
     }
 
-    private func asyncForecastView(for location: Location, type: ForecastType) -> some View {
+    private func forecastView(for location: Location, type: ForecastType) -> some View {
         AsyncView(title: type.description,
                   provider: ForecastProvider(service: environment.weatherService,
                                              location: location,
@@ -76,9 +89,9 @@ struct LocationView: View {
     }
 }
 
-struct PlaceView_Previews: PreviewProvider {
+struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationView(location: Location.sample)
+        LocationView(viewModel: LocationViewModel(place: Place.samples[0]))
             .environmentObject(Environment())
     }
 }
