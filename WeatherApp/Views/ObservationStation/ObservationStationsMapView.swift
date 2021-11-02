@@ -103,7 +103,7 @@ struct ObservationStationsMapView: View {
             { station in
                 MapAnnotation(coordinate: station.location, anchorPoint: CGPoint(x: 0.5, y: 1.0)) {
                     VStack {
-                        NavigationLink(destination: asyncObservationView(for: station.station)) {
+                        NavigationLink(destination: ObservationView(viewModel: .init(station: station.station))) {
                             BubbleView(text: station.id)
                         }
                     }
@@ -122,12 +122,6 @@ struct ObservationStationsMapView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Stations")
         .edgesIgnoringSafeArea([.bottom])
-    }
-
-    private func asyncObservationView(for station: Feature<ObservationStation>) -> some View {
-        AsyncView(title: station.properties.stationIdentifier,
-                  provider: ObservationProvider(service: environment.weatherService,
-                                                station: station))
     }
 }
 

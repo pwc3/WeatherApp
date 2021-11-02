@@ -1,5 +1,5 @@
 //
-//  Result+Async.swift
+//  AsyncViewModel.swift
 //  WeatherApp
 //
 //  Copyright (c) 2021 Rocket Insights, Inc.
@@ -25,14 +25,56 @@
 
 import Foundation
 
-extension Result where Failure == Swift.Error {
-    init(catchingAsync body: () async throws -> Success) async {
-        do {
-            self = .success(try await body())
-        }
-        catch {
-            self = .failure(error)
+@MainActor
+class AsyncViewModel<DataType>: ObservableObject {
+
+    enum State {
+        case loading
+        case success(DataType)
+        case failure(Error)
+    }
+
+    typealias LoaderType = (Environment) async throws -> DataType
+
+    @Published var state: State = .loading
+
+    private let loader: LoaderType
+
+    init(_ loader: @escaping LoaderType) {
+        self.loader = loader
+    }
+
+    func load(_ environment: Environment) {
+        state = .loading
+
+        Task {
+            do {
+                state = .success(try await loader(environment))
+            }
+            catch {
+                state = .failure(error)
+            }
         }
     }
-}
 
+    var isLoading: Bool {
+        guard case .loading = state else {
+            return false
+        }
+        return true
+    }
+
+    var value: DataType? {
+        guard case .success(let value) = state else {
+            return nil
+        }
+        return value
+    }
+
+    var error: Error? {
+        guard case .failure(let error) = state else {
+            return nil
+        }
+        return error
+    }
+}

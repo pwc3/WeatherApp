@@ -35,19 +35,13 @@ struct PlaceList: View {
         NavigationView {
             List {
                 ForEach(places) { place in
-                    NavigationLink(destination:asyncLocationView(for: place)) {
+                    NavigationLink(destination: LocationView(viewModel: .init(place: place))) {
                         Text(place.name)
                     }
                 }
             }
             .navigationTitle("Places")
         }
-    }
-
-    private func asyncLocationView(for place: Place) -> some View {
-        AsyncView(title: place.name,
-                  provider: LocationProvider(service: environment.weatherService,
-                                             place: place))
     }
 }
 

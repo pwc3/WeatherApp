@@ -25,6 +25,7 @@
 
 import SwiftUI
 import WeatherAPI
+import SampleWeatherData
 
 struct ObservationStationView: View {
 
@@ -34,7 +35,7 @@ struct ObservationStationView: View {
 
     var body: some View {
         ForEach(observationStations.features, id: \.properties.stationIdentifier) { station in
-            NavigationLink(destination: asyncObservationView(for: station)) {
+            NavigationLink(destination: ObservationView(viewModel: .init(station: station))) {
                 VStack(alignment: .leading) {
                     Text(station.properties.stationIdentifier).font(.body)
                     Text(station.properties.name).font(.caption)
@@ -42,18 +43,15 @@ struct ObservationStationView: View {
             }
         }
     }
-
-    private func asyncObservationView(for station: Feature<ObservationStation>) -> some View {
-        AsyncView(title: station.properties.stationIdentifier,
-                  provider: ObservationProvider(service: environment.weatherService,
-                                                station: station))
-    }
 }
 
 struct ObservationStationSection_Previews: PreviewProvider {
     static var previews: some View {
-        List {
-            Text("TBD")
+        NavigationView {
+            List {
+                ObservationStationView(observationStations: SampleData.observationStations)
+            }
+            .navigationTitle("Preview")
         }
     }
 }
