@@ -21,3 +21,15 @@ class LocationViewModel: AsyncViewModel<Location> {
         }
     }
 }
+
+extension LocationViewModel {
+    static var preview: LocationViewModel {
+        preview(place: Location.sample.place, result: Location.sample)
+    }
+
+    static func preview(place: Place, result: Location) -> LocationViewModel {
+        let viewModel = LocationViewModel(place: place)
+        viewModel.state = .success(result)
+        return viewModel
+    }
+}

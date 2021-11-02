@@ -45,6 +45,9 @@ struct LocationView: View {
                         viewModel.load(environment)
                     }
 
+            case .failure(let error):
+                ErrorView(error: error, onRetry: { viewModel.load(environment) })
+
             case .success(let location):
                 Section {
                     ExpandableSectionToggle(title: "Forecast point", isExpanded: $isPointMetadataExpanded)
@@ -73,26 +76,22 @@ struct LocationView: View {
                         Text("Seven-day forecast")
                     }
                 }
-
-            case .failure(let error):
-                ErrorView(error: error, onRetry: { viewModel.load(environment) })
             }
         }
         .navigationTitle(viewModel.place.name)
     }
 
     private func forecastView(for location: Location, type: ForecastType) -> some View {
-        AsyncView(title: type.description,
-                  provider: ForecastProvider(service: environment.weatherService,
-                                             location: location,
-                                             type: type))
+        ForecastView(viewModel: ForecastViewModel(location: location, forecastType: type))
     }
 }
 
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationView(viewModel: LocationViewModel(place: Place.samples[0]))
-            .environmentObject(Environment())
+        NavigationView {
+            LocationView(viewModel: .preview)
+        }
+        .environmentObject(Environment())
     }
 }
 

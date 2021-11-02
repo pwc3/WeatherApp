@@ -30,35 +30,47 @@ struct ForecastView: View {
 
     @EnvironmentObject var environment: Environment
 
-    var location: Location
-
-    var forecast: Feature<GridpointForecast>
-
-    var type: ForecastType
+    @ObservedObject var viewModel: ForecastViewModel
 
     var body: some View {
         List {
-            ForEach(forecast.properties.periods, id: \.number) { period in
-                Section(sectionTitle(for: period)) {
-                    if showDetailedForecast {
-                        DetailedForecastView(period: period)
-                    }
-                    else {
-                        Text(period.shortForecast).font(.body)
+            switch viewModel.state {
+            case .loading:
+                LoadingView()
+                    .onAppear {
+                        viewModel.load(environment)
                     }
 
-                    OptionalRow("Temperature", String(format: "%d°%@", period.temperature, period.temperatureUnit))
-                    OptionalRow("Temperature trend", period.temperatureTrend?.rawValue.capitalized)
-                    OptionalRow("Wind speed", period.windSpeed)
-                    OptionalRow("Wind gust", period.windGust)
-                    OptionalRow("Wind direction", period.windDirection.rawValue)
+            case .failure(let error):
+                ErrorView(error: error, onRetry: { viewModel.load(environment) })
+
+            case .success(let forecast):
+                ForEach(forecast.properties.periods, id: \.number) { period in
+                    section(for: period)
                 }
             }
         }
     }
 
+    private func section(for period: GridpointForecastPeriod) -> some View {
+        Section(sectionTitle(for: period)) {
+            if showDetailedForecast {
+                DetailedForecastView(period: period)
+            }
+            else {
+                Text(period.shortForecast).font(.body)
+            }
+
+            OptionalRow("Temperature", String(format: "%d°%@", period.temperature, period.temperatureUnit))
+            OptionalRow("Temperature trend", period.temperatureTrend?.rawValue.capitalized)
+            OptionalRow("Wind speed", period.windSpeed)
+            OptionalRow("Wind gust", period.windGust)
+            OptionalRow("Wind direction", period.windDirection.rawValue)
+        }
+    }
+
     private func sectionTitle(for period: GridpointForecastPeriod) -> String {
-        switch type {
+        switch viewModel.forecastType {
         case .sevenDay:
             return period.name
 
@@ -68,7 +80,7 @@ struct ForecastView: View {
     }
 
     private var showDetailedForecast: Bool {
-        return type == .sevenDay
+        return viewModel.forecastType == .sevenDay
     }
 }
 
@@ -76,13 +88,11 @@ import SampleWeatherData
 
 struct ForecastView_Previews: PreviewProvider {
     static var previews: some View {
-        ForecastView(location: Location.sample,
-                     forecast: SampleData.hourlyGridpointForecast,
-                     type: .hourly)
-
-        ForecastView(location: Location.sample,
-                     forecast: SampleData.sevenDayGridpointForecast,
-                     type: .sevenDay)
+        Group {
+            ForecastView(viewModel: .previewHourlyForecast)
+            ForecastView(viewModel: .previewSevenDayForecast)
+        }
+        .environmentObject(Environment())
     }
 }
 
