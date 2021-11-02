@@ -25,6 +25,7 @@
 
 import SwiftUI
 import WeatherAPI
+import SampleWeatherData
 
 struct ObservationStationView: View {
 
@@ -46,8 +47,11 @@ struct ObservationStationView: View {
 
 struct ObservationStationSection_Previews: PreviewProvider {
     static var previews: some View {
-        List {
-            Text("TBD")
+        NavigationView {
+            List {
+                ObservationStationView(observationStations: SampleData.observationStations)
+            }
+            .navigationTitle("Preview")
         }
     }
 }

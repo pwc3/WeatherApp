@@ -32,8 +32,12 @@ struct ErrorView: View {
 }
 
 struct ErrorView_Previews: PreviewProvider {
-    enum PreviewError: Error {
+    enum PreviewError: Error, LocalizedError {
         case error
+
+        var errorDescription: String? {
+            NSLocalizedString("Something didn't work as expected.", comment: "Preview-only error description")
+        }
     }
 
     static var previews: some View {

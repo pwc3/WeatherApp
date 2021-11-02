@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C500D8652727054E00C4EBAB /* AsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500D8642727054E00C4EBAB /* AsyncView.swift */; };
-		C500D867272706AA00C4EBAB /* AsyncViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500D866272706AA00C4EBAB /* AsyncViewProvider.swift */; };
 		C500D86B272709E900C4EBAB /* ForecastType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500D86A272709E900C4EBAB /* ForecastType.swift */; };
 		C500D87427273AED00C4EBAB /* SampleWeatherData in Frameworks */ = {isa = PBXBuildFile; productRef = C500D87327273AED00C4EBAB /* SampleWeatherData */; };
 		C500D87627273BA500C4EBAB /* Place+Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500D87527273BA500C4EBAB /* Place+Sample.swift */; };
@@ -27,7 +25,6 @@
 		C595BB6C272648FC0049C645 /* OptionalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C595BB6B272648FC0049C645 /* OptionalRow.swift */; };
 		C59A473E27287B1D00C15189 /* ObservationStationsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59A473D27287B1D00C15189 /* ObservationStationsMapView.swift */; };
 		C59A47402728928C00C15189 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59A473F2728928C00C15189 /* BubbleView.swift */; };
-		C5BECC2E27245D0E0001A36A /* Result+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC2D27245D0E0001A36A /* Result+Async.swift */; };
 		C5BECC3227259E370001A36A /* ForecastPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC3127259E370001A36A /* ForecastPointView.swift */; };
 		C5BECC342725A1420001A36A /* ExpandableSectionToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC332725A1420001A36A /* ExpandableSectionToggle.swift */; };
 		C5BECC362725A2AA0001A36A /* ObservationStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BECC352725A2AA0001A36A /* ObservationStationView.swift */; };
@@ -48,8 +45,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C500D8642727054E00C4EBAB /* AsyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncView.swift; sourceTree = "<group>"; };
-		C500D866272706AA00C4EBAB /* AsyncViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncViewProvider.swift; sourceTree = "<group>"; };
 		C500D86A272709E900C4EBAB /* ForecastType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastType.swift; sourceTree = "<group>"; };
 		C500D87527273BA500C4EBAB /* Place+Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+Sample.swift"; sourceTree = "<group>"; };
 		C504912A2723514A003194C2 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +63,6 @@
 		C59A473B27285B9F00C15189 /* WeatherApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherApp.entitlements; sourceTree = "<group>"; };
 		C59A473D27287B1D00C15189 /* ObservationStationsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationStationsMapView.swift; sourceTree = "<group>"; };
 		C59A473F2728928C00C15189 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
-		C5BECC2D27245D0E0001A36A /* Result+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Async.swift"; sourceTree = "<group>"; };
 		C5BECC3127259E370001A36A /* ForecastPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPointView.swift; sourceTree = "<group>"; };
 		C5BECC332725A1420001A36A /* ExpandableSectionToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableSectionToggle.swift; sourceTree = "<group>"; };
 		C5BECC352725A2AA0001A36A /* ObservationStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationStationView.swift; sourceTree = "<group>"; };
@@ -101,16 +95,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C500D85F272704F600C4EBAB /* AsyncView */ = {
-			isa = PBXGroup;
-			children = (
-				C5D5FF5A2730856C00028DD4 /* AsyncViewModel.swift */,
-				C500D8642727054E00C4EBAB /* AsyncView.swift */,
-				C500D866272706AA00C4EBAB /* AsyncViewProvider.swift */,
-			);
-			path = AsyncView;
-			sourceTree = "<group>";
-		};
 		C500D87227273AED00C4EBAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				C59A473B27285B9F00C15189 /* WeatherApp.entitlements */,
-				C5BECC2C27245D010001A36A /* Extensions */,
 				C5BECC2A272450AD0001A36A /* Data */,
 				C50491332723514F003194C2 /* Preview Content */,
 				C5BECC2B272450C30001A36A /* Resources */,
@@ -180,8 +163,8 @@
 		C59A473C27287B0400C15189 /* ObservationStation */ = {
 			isa = PBXGroup;
 			children = (
-				C59A473D27287B1D00C15189 /* ObservationStationsMapView.swift */,
 				C59A473F2728928C00C15189 /* BubbleView.swift */,
+				C59A473D27287B1D00C15189 /* ObservationStationsMapView.swift */,
 			);
 			path = ObservationStation;
 			sourceTree = "<group>";
@@ -189,7 +172,6 @@
 		C5BECC28272450400001A36A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C500D85F272704F600C4EBAB /* AsyncView */,
 				C5BECC3F2725A8E30001A36A /* Common */,
 				C504912F2723514A003194C2 /* ContentView.swift */,
 				C55407A72726559C00CB73D3 /* Forecast */,
@@ -215,6 +197,7 @@
 		C5BECC2A272450AD0001A36A /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C5D5FF5A2730856C00028DD4 /* AsyncViewModel.swift */,
 				C504913E27235336003194C2 /* Environment.swift */,
 				C595BB692726482B0049C645 /* Formatters.swift */,
 				C5BECC3B2725A6A60001A36A /* LoadDecodableFromFile.swift */,
@@ -236,14 +219,6 @@
 				C5BECC392725A6040001A36A /* PointResponse.json */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		C5BECC2C27245D010001A36A /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				C5BECC2D27245D0E0001A36A /* Result+Async.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C5BECC3F2725A8E30001A36A /* Common */ = {
@@ -353,12 +328,10 @@
 				C5BECC342725A1420001A36A /* ExpandableSectionToggle.swift in Sources */,
 				C5D5FF5D2730872900028DD4 /* LocationViewModel.swift in Sources */,
 				C5049147272359C9003194C2 /* LocationView.swift in Sources */,
-				C500D8652727054E00C4EBAB /* AsyncView.swift in Sources */,
 				C5BECC362725A2AA0001A36A /* ObservationStationView.swift in Sources */,
 				C595BB6A2726482B0049C645 /* Formatters.swift in Sources */,
 				C595BB6C272648FC0049C645 /* OptionalRow.swift in Sources */,
 				C504912E2723514A003194C2 /* WeatherApp.swift in Sources */,
-				C5BECC2E27245D0E0001A36A /* Result+Async.swift in Sources */,
 				C5BECC3E2725A6F30001A36A /* Location+Sample.swift in Sources */,
 				C5D5FF6527318C8400028DD4 /* LoadingView.swift in Sources */,
 				C5D5FF6B2731B31A00028DD4 /* ObservationViewModel.swift in Sources */,
@@ -366,7 +339,6 @@
 				C500D87627273BA500C4EBAB /* Place+Sample.swift in Sources */,
 				C5D5FF632731862C00028DD4 /* ErrorView.swift in Sources */,
 				C5D5FF67273190CC00028DD4 /* ForecastViewModel.swift in Sources */,
-				C500D867272706AA00C4EBAB /* AsyncViewProvider.swift in Sources */,
 				C504914127235391003194C2 /* PlaceList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -43,7 +43,9 @@ import SampleWeatherData
 
 struct DetailedForecastView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedForecastView(period: SampleData.hourlyGridpointForecast.properties.periods[0])
+        List {
+            DetailedForecastView(period: SampleData.sevenDayGridpointForecast.properties.periods[0])
+        }
     }
 }
 

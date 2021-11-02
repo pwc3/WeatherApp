@@ -61,7 +61,10 @@ struct BubbleView: View {
 
 struct BubbleView_Previews: PreviewProvider {
     static var previews: some View {
-        BubbleView(text: "KBOS")
+        ZStack {
+            Rectangle().background(.black)
+            BubbleView(text: "KBOS")
+        }
     }
 }
 
