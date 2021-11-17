@@ -37,6 +37,9 @@ struct ForecastView: View {
             switch viewModel.state {
             case .loading:
                 LoadingView()
+                // you use Swift 5 concurrency for the model, so it would make more
+                // sense to use the matching SwiftUI task API here as well instead of
+                // using .onAppear()
                     .onAppear {
                         viewModel.load(environment)
                     }

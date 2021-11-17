@@ -26,6 +26,8 @@
 import SwiftUI
 import WeatherAPI
 
+// This view also heavily relies on being inside a List, so the the expand / collapse animation
+// doesn't slide down / up as it should.
 struct ForecastPointView: View {
 
     private struct Row: View {

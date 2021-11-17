@@ -27,18 +27,12 @@ import SwiftUI
 
 struct LoadingView: View {
     var body: some View {
-        VStack {
-            Spacer(minLength: 24)
-            HStack {
-                Spacer()
-                VStack(alignment: .center, spacing: 8) {
-                    Text("Loading")
-                    ProgressView()
-                }
-                Spacer()
-            }
-            Spacer(minLength: 24)
+        VStack(alignment: .center, spacing: 8) {
+            Text("Loading")
+            ProgressView()
         }
+        .padding(.vertical, 24)
+        .frame(maxWidth: .infinity)
     }
 }
 

@@ -26,6 +26,11 @@
 import Foundation
 import WeatherAPI
 
+/*
+This is an observable object, but there are no published properties. Also, the object is used only when
+ the views are loaded, so if the environment changes at runtime, I don't think that the UI will reload to match the
+ changes in the environment. So this object doesn't need to be part of SwiftUI environment.
+ */
 class Environment: ObservableObject {
 
     let weatherService: WeatherService

@@ -32,6 +32,19 @@ struct DetailedForecastView: View {
     @State private var showDetailedForecast = false
 
     var body: some View {
+        /*
+         This works, but the expanded content fades in / out. I think that it would be
+         better to have a template ExpandableView that would control how the expanded
+         content appears. For example, ExpandableView could make the content slide down
+         and up instead of fade in / out, and the implementation would be in one place.
+         */
+
+        /*
+         The current implementation heavily depends on the fact that the content will
+         be inside a list. It will break or won't work as well if we put this view in
+         another container, like VStack.
+         */
+
         ExpandableSectionToggle(title: period.shortForecast, isExpanded: $showDetailedForecast)
         if showDetailedForecast {
             Text(period.detailedForecast).font(.body)

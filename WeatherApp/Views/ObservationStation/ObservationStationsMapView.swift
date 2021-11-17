@@ -102,10 +102,8 @@ struct ObservationStationsMapView: View {
                 annotationItems: stations.features.compactMap { Station($0) })
             { station in
                 MapAnnotation(coordinate: station.location, anchorPoint: CGPoint(x: 0.5, y: 1.0)) {
-                    VStack {
-                        NavigationLink(destination: ObservationView(viewModel: .init(station: station.station))) {
-                            BubbleView(text: station.id)
-                        }
+                    NavigationLink(destination: ObservationView(viewModel: .init(station: station.station))) {
+                        BubbleView(text: station.id)
                     }
                 }
             }

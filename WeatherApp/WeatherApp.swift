@@ -26,6 +26,12 @@
 import SwiftUI
 import WeatherAPI
 
+/*
+ I think that the app provides useful data, but it's mostly a reader; there is not much interaction,
+ and the layout is mostly basic arrangment of text into lists, so I am not sure how useful it is for
+ learning SwiftUI.
+ */
+
 @main
 struct WeatherApp: App {
 
